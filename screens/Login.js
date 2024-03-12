@@ -1,12 +1,12 @@
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image, ScrollView, TextInput} from 'react-native'
-import React, {useState} from 'react'
-import {CustomInput, CustomButton} from '../screens/Index'
-import {useForm} from 'react-hook-form'
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image, ScrollView, TextInput} from 'react-native';
+import React, {useState} from 'react';
+import {CustomInput, CustomButton} from '../screens/Index';
+import {useForm} from 'react-hook-form';
 
 
 const Login = ({ navigation }) => {
 
-  const {control, handleSubmit, formState: {errors}} = useForm();
+  const {control, handleSubmit} = useForm();
 
  
 

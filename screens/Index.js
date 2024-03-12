@@ -9,6 +9,7 @@ import AddTransaction from "./AddTransaction";
 import UserProfile from "./UserProfile";
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
+import CustomAmountInput from "../components/CustomAmountInput";
 import ConfirmEmail from "./ConfirmEmail";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
@@ -28,5 +29,6 @@ export{
     CustomButton,
     ConfirmEmail,
     ForgotPassword,
-    ResetPassword
+    ResetPassword,
+    CustomAmountInput
 }
