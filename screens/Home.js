@@ -67,7 +67,7 @@ const Home = ({ navigation }) => {
         {/* Balance View Area */}
         <TouchableOpacity style={styles.balanceContainer}>
         <View style={styles.balance}>
-            <Text style={{color: '#FFFFFF', fontSize: 40, fontWeight: '700', paddingLeft: 20, position: 'absolute'}}>Rs: 10,000</Text>
+            <Text style={{color: '#FFFFFF', fontSize: 40, fontWeight: '700', paddingLeft: 20, position: 'absolute'}}>Rs: 20,000</Text>
             <Text style={{color: 'rgba(255,255,255,0.4)', fontSize: 20, fontWeight: '700', right: 30, bottom: 30, position: 'absolute'}}>LKR</Text>
         </View>
         </TouchableOpacity>
