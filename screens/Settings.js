@@ -19,7 +19,7 @@ const Settings = ( { navigation } ) => {
           <Text style={styles.tileText}>Support</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.tile}>
+        <TouchableOpacity style={styles.tile} onPress={()=> navigation.navigate('LogOut')}>
           <Text style={styles.tileText}>Log Out</Text>
         </TouchableOpacity>
       </View>

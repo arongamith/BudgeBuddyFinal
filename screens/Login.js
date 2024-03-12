@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image, ScrollView, TextInput} from 'react-native';
 import React, {useState} from 'react';
-import {CustomInput, CustomButton} from '../screens/Index';
+import {CustomInput, CustomButton, Home} from '../screens/Index';
 import {useForm} from 'react-hook-form';
+
 
 
 const Login = ({ navigation }) => {
@@ -14,7 +15,7 @@ const Login = ({ navigation }) => {
     console.log(data);
     // Validate Login Here
 
-    navigation.navigate("HomeScreen");
+    navigation.navigate('HomeStack');
 
 
   }

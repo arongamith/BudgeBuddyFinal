@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { View, Text, SafeAreaView, Button, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native';
 import {useForm} from 'react-hook-form';
-import { CustomAmountInput, CustomButton } from './Index';
+import { CustomInput,CustomAmountInput, CustomButton } from './Index';
+
 
 
 
@@ -10,8 +11,17 @@ const AddTransaction = ({ navigation }) => {
 
   const {control, handleSubmit} = useForm();
 
+  const [category, setCategory] = useState();
+  const [amount, setAmount] = useState();
+
+  const onCreateCategory = async()=> {
+    
+  }
+
+
+
   const onAddTransaction = (data)=> {
-    console.warn(data)
+    
   }
   
   return (
@@ -32,22 +42,31 @@ const AddTransaction = ({ navigation }) => {
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Add a Transaction</Text>
       </View>
+
       
       {/* Input Area */}
-      <CustomAmountInput
-      name={"Amount"}
-      control={control}
-      placeholder={"Amount"}
-      keyboardType={"numeric"}
-      rules={{
-        required: "Amount is required"
-      }}
+
+      <TextInput
+        placeholder='Category'
+        style={styles.input}
+        onChangeText={(value)=>setCategory(value)}
       />
 
-      <CustomButton
-      title={"Add transaction"}
-      onPress={handleSubmit(onAddTransaction)}
+
+
+      <TextInput
+        placeholder='Amount'
+        style={styles.input}
+        keyboardType='numeric'
+        onChangeText={(value)=>setAmount(value)}
       />
+
+      <TouchableOpacity 
+      style={styles.button}
+      disabled={!category || !amount}
+      >
+        <Text>Add Transaction</Text>
+      </TouchableOpacity>
 
     </SafeAreaView>
   );
@@ -79,8 +98,27 @@ const styles = StyleSheet.create({
     color: "#2b2a2a"
   },
   input:{
-
+    backgroundColor: '#ffffff',
+        width: '80%',
+        height:'7%',
+        borderColor: "#E8E8E8",
+        borderWidth: 1,
+        borderRadius: 10,
+        paddingHorizontal: 10,
+        justifyContent: 'center',
+        marginVertical: 10
   },
+  button:{
+    paddingVertical: 15,
+    borderColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#d5d1d1',
+    width: '80%',
+    marginVertical: 8,
+    borderRadius: 40,
+    top: 10,
+}
 })
 
 

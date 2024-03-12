@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView, Image, ImageBackground} from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import AddTransaction from './AddTransaction';
-
+import  {ScrollView} from 'react-native-gesture-handler';
 
 import Record from '../components/Record';
 
@@ -31,22 +31,22 @@ const Home = ({ navigation }) => {
             value: "30000",
         },
         {
-            title: "Record 2",
+            title: "Record 3",
             value: "30000",
         },{
-            title: "Record 2",
+            title: "Record 4",
             value: "30000",
-        }]);
+        }
+    ]);
+        
   return (
     <SafeAreaView style={styles.container}>
         
        {/* Top Area View with the Page Name and User Picture*/} 
         <View style={styles.firstLayer}>
             <Text style={styles.title}>Home</Text>
-            <MenuProvider>
-                <Menu>
-                    <MenuTrigger>
-                        <Image 
+            <TouchableOpacity>
+            <Image 
                                 source={require('../assets/icons/stockUser.png')}
                                 resizeMode="contain"
                                 style={{
@@ -55,13 +55,7 @@ const Home = ({ navigation }) => {
                                 left: 190
                                 }}
                             />
-                    </MenuTrigger>
-                    <MenuOptions>
-                        <MenuOption  onSelect={()=> navigation.navigate('UserProfile')}text="View Profile" />
-                        <MenuOption  onSelect={()=> navigation.navigate('WelcomeScreen')} text="Log Out" />
-                    </MenuOptions>
-                </Menu>
-            </MenuProvider>
+            </TouchableOpacity>
         </View>
 
         {/* Balance View Area */}
@@ -86,15 +80,21 @@ const Home = ({ navigation }) => {
         </View>
 
         {/* transactions viewving area */}
-        <ScrollView contentContainerStyle={styles.transactionView}>
-            {records.map((data) => {
-                return(
-                    <Record 
-                title={data.title}
-                value={data.value}/>
-                )
-            })}
-        </ScrollView>
+        <View style={{flex: 1}}>
+            <ScrollView 
+            contentContainerStyle={styles.transactionView}
+            alwaysBounceVertical={true}
+            >
+                {records.map((data) => {
+                    return(
+                        <Record 
+                    title={data.title}
+                    value={data.value}/>
+                    )
+                })}
+            </ScrollView>
+        </View>
+       
 
         {/* Adding Button */}
         <TouchableOpacity style={styles.addingButton} onPress={()=>navigation.navigate('AddTransaction')}>
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
 
     container:{
         flex: 1,
-        backgroundColor: '#F2F2F2'
+        backgroundColor: '#f2f2f2'
 
     },
     firstLayer:{
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     balance:{
         width: 320,
         height: 150,
-        borderRadius: 40,
+        borderRadius: 20,
         backgroundColor: '#1d1d1d',
         flexDirection: 'row',
         alignItems: 'center', 
@@ -190,24 +190,20 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
         borderRadius: 100,
-        borderWidth: 1,
-        borderColor: 'black',
         position: 'absolute',
         right: 30,
         bottom: 120,
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: '#0B0C11',
-        shadowOffset: {
-        width: 3,
-        height: 5,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.5,
+        backgroundColor: '#0B0C11'
     },
     transactionView:{
         marginTop: 30,
-        alignItems: 'center'
+        alignItems: 'center',
+        flex: 1,
+        
+        
+    
         
     }
 

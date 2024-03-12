@@ -13,6 +13,9 @@ import CustomAmountInput from "../components/CustomAmountInput";
 import ConfirmEmail from "./ConfirmEmail";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
+import HomeStack from "../navigation/HomeStack";
+import AuthStack from "../navigation/AuthStack";
+import Tabs from "../components/NavTab";
 
 
 export{
@@ -30,5 +33,8 @@ export{
     ConfirmEmail,
     ForgotPassword,
     ResetPassword,
-    CustomAmountInput
+    CustomAmountInput,
+    HomeStack,
+    AuthStack,
+    Tabs
 }

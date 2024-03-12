@@ -14,8 +14,7 @@ const Tab = createBottomTabNavigator();
 const Tabs = () => {
 
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ flex: 1 }}>
+   
         <Tab.Navigator
           screenOptions={{
             tabBarShowLabel: false,
@@ -23,9 +22,9 @@ const Tabs = () => {
             unmountOnBlur: true,
             tabBarStyle: {
               position: 'absolute',
-              backgroundColor: 'rgba(255, 255, 255, 0.6)',
-              height: 90,
-              ...styles.shadow,
+              backgroundColor: '#FFFFFF',
+              height: '10%',
+              width: "100%",
             },
             
           }}
@@ -115,9 +114,7 @@ const Tabs = () => {
           />
           
         </Tab.Navigator>
-      </View>
-      {/* Add different tags starting from here */}
-    </View>
+      
   );
 };
 
