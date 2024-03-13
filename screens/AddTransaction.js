@@ -165,13 +165,13 @@ const styles = StyleSheet.create({
     height: 35,
     borderRadius: 27,
     backgroundColor: 'rgba(201,201,201,0.4)',
-    right: 130,
     marginTop: 20,
     alignItems: 'center',
-    justifyContent: 'center' 
+    justifyContent: 'center',
+    left: 10 
   },
   titleContainer:{
-    left: 10,
+    alignSelf: 'center',
     marginVertical: 20
   },
   title:{
