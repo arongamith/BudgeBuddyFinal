@@ -5,14 +5,6 @@ import AddTransaction from './AddTransaction';
 
 import Record from '../components/Record';
 
-import {
-    Menu,
-    MenuProvider,
-    MenuOptions,
-    MenuOption,
-    MenuTrigger,
-   } from "react-native-popup-menu";
-
 
 
 const Home = ({ navigation }) => {
