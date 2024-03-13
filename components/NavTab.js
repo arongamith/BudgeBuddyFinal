@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {Home,Goals,Settings,Stats, AddTransaction} from '../screens/Index'
+import {Home,Goals,Settings,Stats,AddTransaction} from '../screens/Index'
 
 
 
@@ -25,6 +25,7 @@ const Tabs = () => {
               backgroundColor: '#FFFFFF',
               height: '10%',
               width: "100%",
+              
             },
             
           }}

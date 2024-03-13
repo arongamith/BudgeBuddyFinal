@@ -34,32 +34,29 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     backgroundColor: '#F2F2F2',
-    alignItems: 'center'
+    marginBottom: 90,
   },
 
   firstLayer:{
-    right: 100,
-    paddingHorizontal: 24,
-    marginBottom: 12,
-    paddingTop: 20,
-    
-    
-  },
-
-  title:{
-    fontSize: 32,
-    fontWeight: '700',
-    color: '#1d1d1d',
-    marginBottom: 7,
-    
-  },
+        
+        flexDirection: 'row',
+        paddingHorizontal: 24,
+        marginBottom: 12,
+        paddingTop: 20,
+        
+    },
+    title:{
+        fontSize: 32,
+        fontWeight: '700',
+        color: '#1d1d1d',
+        marginBottom: 7
+    },
 
   optionsContainer:{
     width: '85%',
     height: '30%',
     marginTop: 40,
-    
-    
+    alignSelf: 'center'
   },
 
   tile:{

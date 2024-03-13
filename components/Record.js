@@ -8,7 +8,10 @@ const Record = (props) => {
         <Image 
         source={require('../assets/icons/GoogleLogoPNGImage.png')}
         resizeMode='contain'
-        style={styles.recordImage}/>
+        style={{
+          height: "100%",
+          width: "10%"
+        }}/>
       <Text>{props.title}</Text>
       <Text>{props.value}</Text>
     </View>
@@ -17,22 +20,18 @@ const Record = (props) => {
 
 const styles = StyleSheet.create({
     record:{
-        display:"flex",
         flexDirection:"row",
         justifyContent: "space-around",
         alignItems: "center",
-        width: "90%",
-        height: "25%",
+        width: 350,
+        height: 100,
         paddingVertical: 10,
         marginLeft: "1%",
         marginTop: "2%",
         borderRadius: 5,
         backgroundColor: "rgba(220, 217, 217, 0.4)",
     },
-    recordImage:{
-        width: 30,
-        aspectRatio: 1,
-    },
+    
 })
 
 export default Record;

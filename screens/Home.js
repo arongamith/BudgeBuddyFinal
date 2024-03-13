@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, Fla} from 'react-native';
 import AddTransaction from './AddTransaction';
-import  {ScrollView} from 'react-native-gesture-handler';
+
 
 import Record from '../components/Record';
 
@@ -12,10 +12,6 @@ import {
     MenuOption,
     MenuTrigger,
    } from "react-native-popup-menu";
-
-
-
-
 
 
 
@@ -80,20 +76,20 @@ const Home = ({ navigation }) => {
         </View>
 
         {/* transactions viewving area */}
-        <View style={{flex: 1}}>
-            <ScrollView 
-            contentContainerStyle={styles.transactionView}
-            alwaysBounceVertical={true}
-            >
-                {records.map((data) => {
-                    return(
-                        <Record 
-                    title={data.title}
-                    value={data.value}/>
-                    )
-                })}
-            </ScrollView>
-        </View>
+        
+        <ScrollView 
+        contentContainerStyle={styles.transactionView}
+        >
+            {records.map((data) => {
+                return(
+                    <Record 
+                title={data.title}
+                value={data.value}/>
+                )
+            })}
+        </ScrollView>
+        
+    
        
 
         {/* Adding Button */}
@@ -120,10 +116,12 @@ const styles = StyleSheet.create({
 
     container:{
         flex: 1,
-        backgroundColor: '#f2f2f2'
+        backgroundColor: '#f2f2f2',
+        marginBottom: 90
 
     },
     firstLayer:{
+        
         flexDirection: 'row',
         paddingHorizontal: 24,
         marginBottom: 12,
@@ -144,7 +142,7 @@ const styles = StyleSheet.create({
 
     },
     balanceContainer:{
-        alignItems: 'center',
+        alignSelf: 'center',
         marginTop: 20,
         
     },
@@ -159,7 +157,6 @@ const styles = StyleSheet.create({
     middleLayer:{
         flexDirection: 'row',
         marginTop: 40,
-        
         
     },
     leftButtons:{
@@ -192,18 +189,16 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         position: 'absolute',
         right: 30,
-        bottom: 120,
+        bottom: 15,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#0B0C11'
     },
     transactionView:{
-        marginTop: 30,
+        
         alignItems: 'center',
-        flex: 1,
-        
-        
-    
+        flexGrow: 1
+
         
     }
 
