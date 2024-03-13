@@ -35,7 +35,7 @@ const Tabs = () => {
             component={Home}
             options={{
               tabBarIcon: ({ focused }) => (
-                <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
                   <Image
                     source={require('../assets/icons/home.png')}
                     resizeMode="contain"
@@ -56,7 +56,7 @@ const Tabs = () => {
             component={Goals}
             options={{
               tabBarIcon: ({ focused }) => (
-                <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
                   <Image
                     source={require('../assets/icons/goal.png')}
                     resizeMode="contain"
@@ -77,7 +77,7 @@ const Tabs = () => {
             component={Stats}
             options={{
               tabBarIcon: ({ focused }) => (
-                <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
                   <Image
                     source={require('../assets/icons/bar-chart.png')}
                     resizeMode="contain"
@@ -98,7 +98,7 @@ const Tabs = () => {
             component={Settings}
             options={{
               tabBarIcon: ({ focused }) => (
-                <View style={{ alignItems: 'center', justifyContent: 'center', top: 10, }}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
                   <Image
                     source={require('../assets/icons/settings.png')}
                     resizeMode="contain"

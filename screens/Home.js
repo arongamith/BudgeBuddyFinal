@@ -34,15 +34,15 @@ const Home = ({ navigation }) => {
         <View style={styles.firstLayer}>
             <Text style={styles.title}>Home</Text>
             <TouchableOpacity>
-            <Image 
-                                source={require('../assets/icons/stockUser.png')}
-                                resizeMode="contain"
-                                style={{
-                                width: 60,
-                                height: 60,
-                                left: 190
-                                }}
-                            />
+                <Image 
+                    source={require('../assets/icons/stockUser.png')}
+                    resizeMode="contain"
+                    style={{
+                    width: 60,
+                    height: 60,
+                    left: 190
+                    }}
+                />
             </TouchableOpacity>
         </View>
 
@@ -68,7 +68,6 @@ const Home = ({ navigation }) => {
         </View>
 
         {/* transactions viewving area */}
-        
         <ScrollView 
         contentContainerStyle={styles.transactionView}
         >
@@ -82,8 +81,6 @@ const Home = ({ navigation }) => {
         </ScrollView>
         
     
-       
-
         {/* Adding Button */}
         <TouchableOpacity style={styles.addingButton} onPress={()=>navigation.navigate('AddTransaction')}>
         <Image 
@@ -94,10 +91,6 @@ const Home = ({ navigation }) => {
             height: 60,
             }}/>
         </TouchableOpacity>
-
-     
-
-
 
     </SafeAreaView>
   );
@@ -160,7 +153,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center' 
     },
-
     rightButton:{
         width: 80,
         height: 35,
@@ -174,7 +166,6 @@ const styles = StyleSheet.create({
         color: '#909090',
         fontWeight: '700'
     },
-
     addingButton:{
         width: 60,
         height: 60,
@@ -186,15 +177,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#0B0C11'
     },
-    transactionView:{
-        
+    transactionView:{ 
         alignItems: 'center',
-        flexGrow: 1
-
-        
+        flexGrow: 1,   
     }
-
-
 })
 
 export default Home;
