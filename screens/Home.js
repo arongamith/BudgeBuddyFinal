@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
     middleLayer:{
         flexDirection: 'row',
         marginTop: 40,
+        marginBottom: 10
         
     },
     leftButtons:{
