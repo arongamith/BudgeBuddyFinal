@@ -20,13 +20,19 @@ const HomeStack = () => {
           <Stack.Screen
           name='AddTransaction'
           component={AddTransaction}
-          options={{headerShown: false}}
+          options={{
+            headerBackTitleVisible: false,
+            headerTitle: "Add a Transaction"
+          }}
           />
 
           <Stack.Screen
           name="UserProfile"
           component={UserProfile}
-          options={{headerShown: false}}
+          options={{
+            headerBackTitleVisible: false,
+            headerTitle: "Profile"
+          }}
           />
 
           <Stack.Screen

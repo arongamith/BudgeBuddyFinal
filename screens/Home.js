@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, Fla} from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView} from 'react-native';
 import AddTransaction from './AddTransaction';
 
 

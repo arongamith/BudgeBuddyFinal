@@ -1,124 +1,95 @@
 import React, {useState} from 'react';
-import { View, Text, SafeAreaView, Button, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native';
-import {useForm} from 'react-hook-form';
-import { CustomInput,CustomAmountInput, CustomButton } from './Index';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native';
 import DropdownComponent from '../components/DropDownList';
-
-
-
 
 
 
 const AddTransaction = ({ navigation }) => {
 
-  const {control, handleSubmit} = useForm();
   const [category, setCategory] = useState();
   const [type, setType] = useState(null);
+  const [amount, setAmount] = useState();
   
-
+  // List of Data
   const transactionType = [
-    { label: 'Income', value: '1' },
-    { label: 'Expense', value: '2' },
+    { label: 'Income', value: 'Income' },
+    { label: 'Expenses', value: 'Expenses' },
   ];
 
   const incomeList = [
-    { label: 'Salery', value: 'salery' },
-    { label: 'Business Income', value: 'business'},
-    { label: 'Rental Income', value: 'rental'},
-    { label: 'Investment Income', value: 'investment'},
-    { label: 'Side Hustle Income', value: 'sideHustle'},
-    { label: 'Pension', value: 'pension'},
-    { label: 'Interest', value: 'interest'},
-    { label: 'Child Support', value: 'childSupport'},
-    { label: 'Royalities', value: 'royalities'},
-    { label: 'Bonuses', value: 'bonuses'},
-    { label: 'Tips', value: 'tips'},
-    { label: 'Commision Earnings', value: 'commision'},
+    { label: 'Salery', value: 'Salery' },
+    { label: 'Business Income', value: 'Business Income'},
+    { label: 'Rental Income', value: 'Rental Income'},
+    { label: 'Investment Income', value: 'Investment Income'},
+    { label: 'Side Hustle Income', value: 'Side Hustle Income'},
+    { label: 'Pension', value: 'Pension'},
+    { label: 'Interests', value: 'Interests'},
+    { label: 'Child Support', value: 'Child Support'},
+    { label: 'Royalities', value: 'Royalities'},
+    { label: 'Bonuses', value: 'Bonuses'},
+    { label: 'Tips', value: 'Tips'},
+    { label: 'Commision Earnings', value: 'Commision Earnings'},
     { label: 'Gifts', value: 'gifts'},
-    { label: 'Online Income (e.g., blogging, affiliate marketing) ', value: 'onlineIncome'},
-    { label: 'Part-Time Job Income', value: 'partTimeJob'},
-    { label: 'Schorlarship', value: 'scholarship'},
-    { label: 'Fellowship Stipend', value: 'fellowshipStipend'},
-    { label: 'Retirement Income', value: 'retirement'},
-    { label: 'Savings Withdrawal', value: 'savings'},
-    { label: 'Real Estate Income', value: 'realEstate'},
-    { label: 'Stock Options', value: 'stockOptions'},
-    { label: 'Educational Reimburement', value: 'educationalRemburement'},
-    { label: 'Money Awards', value: 'moneyAwards'},
-    
+    { label: 'Online Income (e.g., blogging, affiliate marketing) ', value: 'OnlineIncome'},
+    { label: 'Part-Time Job Income', value: 'Part-Time Job'},
+    { label: 'Schorlarship', value: 'Scholarship'},
+    { label: 'Fellowship Stipend', value: 'Fellowship Stipend'},
+    { label: 'Retirement Income', value: 'Retirement'},
+    { label: 'Savings Withdrawal', value: 'Savings'},
+    { label: 'Real Estate Income', value: 'Real Estate'},
+    { label: 'Stock Options', value: 'Stock Options'},
+    { label: 'Educational Reimburement', value: 'Educational Remburement'},
+    { label: 'Money Awards', value: 'Money Awards'},
   ]
 
   const expenseList = [
-    { label: 'Groceries', value: 'groceries'},
-    { label: 'Dning Out', value: 'diningOut'},
-    { label: 'Utilities', value: 'utilities'},
-    { label: 'Entertainment', value: 'entertainment'},
-    { label: 'Transportation', value: 'transportation'},
-    { label: 'Shopping', value: 'shopping'},
-    { label: 'Rent/ Mortgage', value: 'rent'},
-    { label: 'Healthcare', value: 'healthcare'},
-    { label: 'Insurance', value: 'insurance'},
-    { label: 'Education', value: 'education'},
-    { label: 'Clothing', value: 'clothing'},
-    { label: 'Home Maintenence', value: 'homeMaintenence'},
-    { label: 'Travel', value: 'travel'},
-    { label: 'Personal Care', value: 'personalCare'},
-    { label: 'Communication (e.g., internet, phone)', value: 'communication'},
-    { label: 'Subscription Services (e.g., streaming, magazines)', value: 'groceries'},
-    { label: 'Gifts and Donations', value: 'donations'},
-    { label: 'Savings/ Investments', value: 'savings'},
-    { label: 'Fitness/ Wellness', value: 'fitness'},
-    { label: 'Childcare', value: 'childcare'},
-    { label: 'Pet Expenses', value: 'petExpenses'},
-    { label: 'Taxes', value: 'taxes'},
-    { label: 'Loan Repayments', value: 'loanRepayments'},
-    { label: 'Miscellaneous', value: 'miscellaneous'},
-    { label: 'Hobbies', value: 'hobbies'},
-    { label: 'Emergency Fund', value: 'emergencyFund'},
-    { label: 'Furniture', value: 'furniture'},
-    { label: 'Technology', value: 'technology'},
+    { label: 'Groceries', value: 'Groceries'},
+    { label: 'Dning Out', value: 'Dining Out'},
+    { label: 'Utilities', value: 'Utilities'},
+    { label: 'Entertainment', value: 'Entertainment'},
+    { label: 'Transportation', value: 'Transportation'},
+    { label: 'Shopping', value: 'Shopping'},
+    { label: 'Rent/ Mortgage', value: 'Rent'},
+    { label: 'Healthcare', value: 'Healthcare'},
+    { label: 'Insurance', value: 'Insurance'},
+    { label: 'Education', value: 'Education'},
+    { label: 'Clothing', value: 'Clothing'},
+    { label: 'Home Maintenence', value: 'Home Maintenence'},
+    { label: 'Travel', value: 'Travel'},
+    { label: 'Personal Care', value: 'Personal Care'},
+    { label: 'Communication (e.g., internet, phone)', value: 'Communication'},
+    { label: 'Subscription Services (e.g., streaming, magazines)', value: 'Subscriptions'},
+    { label: 'Gifts and Donations', value: 'Donations'},
+    { label: 'Savings/ Investments', value: 'Savings'},
+    { label: 'Fitness/ Wellness', value: 'Fitness'},
+    { label: 'Childcare', value: 'Childcare'},
+    { label: 'Pet Expenses', value: 'Pet Expenses'},
+    { label: 'Taxes', value: 'Taxes'},
+    { label: 'Loan Repayments', value: 'Loan Repayments'},
+    { label: 'Miscellaneous', value: 'Miscellaneous'},
+    { label: 'Hobbies', value: 'Hobbies'},
+    { label: 'Emergency Fund', value: 'Emergency Fund'},
+    { label: 'Furniture', value: 'Furniture'},
+    { label: 'Technology', value: 'Technology'},
   ]
 
-  
   // Check if type is income or expense
   
   let selectedList = [];
 
-  if (type === '1') {
+  if (type === 'Income') {
     selectedList = incomeList;
-  } else if (type === '2') {
+  } else if (type === 'Expenses') {
     selectedList = expenseList;
   }
 
-  const [amount, setAmount] = useState();
-
-  const onCreateCategory = async()=> {
-    
-  }
-
-  const onAddTransaction = (data)=> {
-    
+  const onAddTransaction = ()=> {
+    console.warn(category,type,amount)
+  
   }
   
   return (
     <SafeAreaView style={styles.container}>
-      {/* Go Back Button */}
-      <TouchableOpacity style={styles.goBackButton} onPress={ ()=> navigation.navigate('HomeScreen') }>
-          <Image
-          source={require('../assets/icons/backButton.png')}
-          resizeMode='contain'
-          style={{
-            width: 20,
-            height: 20,
-          }}
-          />  
-      </TouchableOpacity>
-      
-      {/* Title View */}
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Add a Transaction</Text>
-      </View>
-
       
       {/* Input Area */}
       <DropdownComponent
@@ -143,8 +114,9 @@ const AddTransaction = ({ navigation }) => {
       />
 
       <TouchableOpacity 
-      style={styles.button}
-      disabled={!type || !amount}
+        style={styles.button}
+        disabled={!type || !category || !amount}
+        onPress={onAddTransaction}
       >
         <Text>Add Transaction</Text>
       </TouchableOpacity>
@@ -158,7 +130,6 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     marginBottom: 90
-    
   },
   goBackButton:{
     width: 80,
@@ -204,8 +175,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
 }
 })
-
-
-
 
 export default AddTransaction;
