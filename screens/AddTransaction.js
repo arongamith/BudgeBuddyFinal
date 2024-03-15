@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, TextInput, } from 'react-native';
 import DropdownComponent from '../components/DropDownList';
 
 

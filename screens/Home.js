@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView} from 'react-native';
 import Record from '../components/Record';
+import {SwitchTab } from './Index';
 
 
 
 
 const Home = ({ navigation }) => {
 
-    const [balance,setBalance] = useState("0");
+    const [balance,setBalance] = useState("00,000");
+    const [allStates] = useState(['Income', 'Expense', 'All']);
+    const [switchState, setSwitchState] = useState(allStates[0])
    
     const [records,setRecords] = useState([
         {
@@ -21,8 +24,13 @@ const Home = ({ navigation }) => {
         {
             title: "Record 3",
             value: "30000",
-        },{
+        },
+        {
             title: "Record 4",
+            value: "30000",
+        },
+        {
+            title: "Record 5",
             value: "30000",
         }
     ]);
@@ -49,27 +57,24 @@ const Home = ({ navigation }) => {
         {/* Balance View Area */}
         <TouchableOpacity style={styles.balanceContainer}>
         <View style={styles.balance}>
-            <Text style={{color: '#FFFFFF', fontSize: 40, fontWeight: '700', paddingLeft: 20, position: 'absolute'}}>Rs: 20,000</Text>
+            <Text style={{color: '#FFFFFF', fontSize: 40, fontWeight: '700', paddingLeft: 20, position: 'absolute'}}>Rs: {balance}</Text>
             <Text style={{color: 'rgba(255,255,255,0.4)', fontSize: 20, fontWeight: '700', right: 30, bottom: 30, position: 'absolute'}}>LKR</Text>
         </View>
         </TouchableOpacity>
 
         {/* Select Income or Expences to Display Area */}
         <View style={styles.middleLayer}>
-            <TouchableOpacity style={styles.leftButtons}>
-                <Text style={styles.buttonText}>Income</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.leftButtons}>
-                <Text style={styles.buttonText}>Expenses</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.rightButton}>
-                <Text style={styles.buttonText}>View All</Text>
-            </TouchableOpacity>
+            <SwitchTab
+            allStates={allStates}
+            switchState={switchState}
+            setSwitchState={setSwitchState}
+            />
         </View>
 
         {/* transactions viewving area */}
         <ScrollView 
         contentContainerStyle={styles.transactionView}
+        alwaysBounceVertical={true}
         >
             {records.map((data) => {
                 return(
@@ -82,7 +87,11 @@ const Home = ({ navigation }) => {
         
     
         {/* Adding Button */}
-        <TouchableOpacity style={styles.addingButton} onPress={()=>navigation.navigate('AddTransaction')}>
+        <TouchableOpacity 
+        style={styles.addingButton} 
+        onPress={()=>navigation.navigate('AddTransaction')}
+        
+        >
         <Image 
             source={require('../assets/icons/plusButton.png')}
             resizeMode="contain"
@@ -140,28 +149,8 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
     },
     middleLayer:{
-        flexDirection: 'row',
         marginTop: 40,
         marginBottom: 10
-        
-    },
-    leftButtons:{
-        width: 80,
-        height: 35,
-        borderRadius: 27,
-        backgroundColor: 'rgba(201,201,201,0.4)',
-        marginLeft: 20,
-        alignItems: 'center',
-        justifyContent: 'center' 
-    },
-    rightButton:{
-        width: 80,
-        height: 35,
-        borderRadius: 27,
-        marginLeft: 90,
-        backgroundColor: 'rgba(201,201,201,0.4)',
-        alignItems: 'center',
-        justifyContent: 'center'    
     },
     buttonText:{
         color: '#909090',
@@ -176,7 +165,8 @@ const styles = StyleSheet.create({
         bottom: 15,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#0B0C11'
+        backgroundColor: '#0B0C11',
+        opacity: 0.2
     },
     transactionView:{ 
         alignItems: 'center',

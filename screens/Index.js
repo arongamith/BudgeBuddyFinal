@@ -17,6 +17,7 @@ import HomeStack from "../navigation/HomeStack";
 import AuthStack from "../navigation/AuthStack";
 import Tabs from "../components/NavTab";
 import BarChartComponent from "../components/BarChart";
+import SwitchTab from "../components/SwitchSelector";
 
 
 export{
@@ -38,5 +39,6 @@ export{
     HomeStack,
     AuthStack,
     Tabs,
-    BarChartComponent
+    BarChartComponent,
+    SwitchTab
 }
