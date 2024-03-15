@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView} from 'react-native';
-import AddTransaction from './AddTransaction';
-
-
 import Record from '../components/Record';
 
 
 
+
 const Home = ({ navigation }) => {
+
+    const [balance,setBalance] = useState("0");
    
     const [records,setRecords] = useState([
         {

@@ -15,8 +15,8 @@ const Stats = () => {
         <Text style={styles.title}>Stats</Text>
       </View>
       <View style={styles.barChartContainer}>
-        {/* <BarChartComponent
-        /> */}
+        <BarChartComponent
+        />
       </View>
   </SafeAreaView>
   );

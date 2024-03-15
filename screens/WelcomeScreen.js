@@ -18,10 +18,10 @@ const WelcomeScreen = ({ navigation }) => {
       title = "Lets Get Started"
       onPress={()=>navigation.navigate("SignUp")}
       />
-      <View style={{position: 'absolute', bottom: 120, justifyContent: 'center', alignItems: 'center',}}>
+      <View style={{position: 'absolute', bottom: 120, justifyContent: 'center', alignSelf: 'center',}}>
         <Text style={{color: "#FFFFFF", marginBottom: 10}}>Already Signed in?</Text>
       </View>
-      <TouchableOpacity style={{position: 'absolute', bottom: 100, justifyContent: 'center', alignItems: 'center',}} onPress={()=>navigation.navigate('Login')}>
+      <TouchableOpacity style={{position: 'absolute', bottom: 100, justifyContent: 'center', alignSelf: 'center',}} onPress={()=>navigation.navigate('Login')}>
         <Text style={{color: "#FFFFFF", fontWeight: '500'}}>Login Here</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -32,16 +32,15 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: "#2F415B",
-        alignItems: "center",
-        justifyContent: "center",
+        
+        
 
     },
     titleContainer:{
         flexDirection: "row",
         alignItems: "center",
-        position: 'absolute',
-        top: 300
-        
+        alignSelf: 'center',
+        paddingTop: 200
     },
     title:{
         fontWeight: "500",
