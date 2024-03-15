@@ -1,40 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView} from 'react-native';
 import Record from '../components/Record';
-import {SwitchTab } from './Index';
+import {SwitchTab} from './Index';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTransactions } from '../context/TransactionContext';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 
 
 const Home = ({ navigation }) => {
 
-    const [balance,setBalance] = useState("00,000");
-    const [allStates] = useState(['Income', 'Expense', 'All']);
-    const [switchState, setSwitchState] = useState(allStates[0])
    
-    const [records,setRecords] = useState([
-        {
-            title: "Record 1",
-            value: "20000",
-        },
-        {
-            title: "Record 2",
-            value: "30000",
-        },
-        {
-            title: "Record 3",
-            value: "30000",
-        },
-        {
-            title: "Record 4",
-            value: "30000",
-        },
-        {
-            title: "Record 5",
-            value: "30000",
-        }
-    ]);
-        
+    const [allStates] = useState(['Income', 'Expense', 'All']);
+    const [switchState, setSwitchState] = useState(allStates[2])
+    const { transactions, balance } = useTransactions();
+
+    const filteredTransactions = switchState === 'All' ? transactions : transactions.filter(transaction => transaction.type === switchState);
+
+
+    
   return (
     <SafeAreaView style={styles.container}>
         
@@ -48,7 +33,7 @@ const Home = ({ navigation }) => {
                     style={{
                     width: 60,
                     height: 60,
-                    left: 190
+                    
                     }}
                 />
             </TouchableOpacity>
@@ -56,10 +41,12 @@ const Home = ({ navigation }) => {
 
         {/* Balance View Area */}
         <TouchableOpacity style={styles.balanceContainer}>
-        <View style={styles.balance}>
+        <LinearGradient 
+        colors={['#4562ab','#00144a']}
+        style={styles.balance}>
             <Text style={{color: '#FFFFFF', fontSize: 40, fontWeight: '700', paddingLeft: 20, position: 'absolute'}}>Rs: {balance}</Text>
             <Text style={{color: 'rgba(255,255,255,0.4)', fontSize: 20, fontWeight: '700', right: 30, bottom: 30, position: 'absolute'}}>LKR</Text>
-        </View>
+        </LinearGradient>
         </TouchableOpacity>
 
         {/* Select Income or Expences to Display Area */}
@@ -76,13 +63,14 @@ const Home = ({ navigation }) => {
         contentContainerStyle={styles.transactionView}
         alwaysBounceVertical={true}
         >
-            {records.map((data) => {
-                return(
-                    <Record 
-                title={data.title}
-                value={data.value}/>
-                )
-            })}
+            {filteredTransactions.map((transaction, index) => (
+        <Record
+          key={index}
+          type={transaction.type}
+          category={transaction.category}
+          amount={transaction.amount} // Combine category and amount as value
+        />
+      ))}
         </ScrollView>
         
     
@@ -117,9 +105,11 @@ const styles = StyleSheet.create({
     firstLayer:{
         
         flexDirection: 'row',
-        paddingHorizontal: 24,
+        justifyContent:'space-between',
         marginBottom: 12,
         paddingTop: 20,
+        paddingHorizontal: 20
+        
         
     },
     title:{
@@ -128,13 +118,7 @@ const styles = StyleSheet.create({
         color: '#1d1d1d',
         marginBottom: 7
     },
-    userImage:{
-        width: 70,
-        height: 70,
-        marginLeft: 190,
-        alignItems: 'center'
-
-    },
+    
     balanceContainer:{
         alignSelf: 'center',
         marginTop: 20,
@@ -144,7 +128,7 @@ const styles = StyleSheet.create({
         width: 320,
         height: 150,
         borderRadius: 20,
-        backgroundColor: '#1d1d1d',
+        backgroundColor: '#2f497d',
         flexDirection: 'row',
         alignItems: 'center', 
     },

@@ -6,6 +6,7 @@ import { HomeStack, AuthStack, Home} from './screens/Index';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
+
 const Stack = createStackNavigator();
 
 

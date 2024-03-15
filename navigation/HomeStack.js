@@ -3,12 +3,14 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { AddTransaction, Home, Login, Tabs, UserProfile, AuthStack } from '../screens/Index';
 import { createStackNavigator } from '@react-navigation/stack';
+import { TransactionProvider } from '../context/TransactionContext';
+
 
 const Stack = createStackNavigator();
 
 const HomeStack = () => {
   return (
-    
+      <TransactionProvider>
         <Stack.Navigator initialRouteName='Home'>
 
           <Stack.Screen 
@@ -42,8 +44,8 @@ const HomeStack = () => {
           />
 
           
-        </Stack.Navigator>
-    
+          </Stack.Navigator>
+        </TransactionProvider>
   )
 }
 

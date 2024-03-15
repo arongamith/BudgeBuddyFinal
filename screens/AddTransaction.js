@@ -1,20 +1,32 @@
 import React, {useState} from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, TextInput, } from 'react-native';
 import DropdownComponent from '../components/DropDownList';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTransactions } from '../context/TransactionContext';
 
 
 const AddTransaction = ({ navigation }) => {
 
-  const [category, setCategory] = useState();
-  const [type, setType] = useState(null);
-  const [amount, setAmount] = useState();
+  const { addTransaction } = useTransactions();
+  const [category, setCategory] = useState('');
+  const [type, setType] = useState('');
+  const [amount, setAmount] = useState('');
+
+  const handleAddTransaction = () => {
+    addTransaction(type, category, amount); // Ensure type is 'Expense' for expenses
+    setAmount('');
+  };
+
   
   // List of Data
   const transactionType = [
     { label: 'Income', value: 'Income' },
-    { label: 'Expenses', value: 'Expenses' },
+    { label: 'Expense', value: 'Expense' },
   ];
+
+  
+
+  
 
   const incomeList = [
     { label: 'Salery', value: 'Salery' },
@@ -79,12 +91,12 @@ const AddTransaction = ({ navigation }) => {
 
   if (type === 'Income') {
     selectedList = incomeList;
-  } else if (type === 'Expenses') {
+  } else if (type === 'Expense') {
     selectedList = expenseList;
   }
 
   const onAddTransaction = ()=> {
-    console.warn(category,type,amount)
+    console.warn(amount);
   
   }
   
@@ -95,14 +107,14 @@ const AddTransaction = ({ navigation }) => {
       <DropdownComponent
         data={transactionType}
         value={type}
-        setValue={setType}
+        setValue={(text) => setType(text)}
         placeholder={"Select Transaction Type"}
       />
 
       <DropdownComponent
         data={selectedList}
         value={category}
-        setValue={setCategory}
+        setValue={(text) => setCategory(text)}
         placeholder={"Select Category"}
       />
 
@@ -116,7 +128,7 @@ const AddTransaction = ({ navigation }) => {
       <TouchableOpacity 
         style={styles.button}
         disabled={!type || !category || !amount}
-        onPress={onAddTransaction}
+        onPress={handleAddTransaction}
       >
         <Text>Add Transaction</Text>
       </TouchableOpacity>
