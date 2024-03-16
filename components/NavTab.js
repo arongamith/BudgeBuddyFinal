@@ -22,8 +22,8 @@ const Tabs = () => {
             unmountOnBlur: true,
             tabBarStyle: {
               position: 'absolute',
-              backgroundColor: '#f2f2f2',
-              height: '10%',
+              backgroundColor: '#C4C5DA',
+              height: '9%',
               width: "100%",
               
             },

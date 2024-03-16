@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView} from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, FlatList} from 'react-native';
 import Record from '../components/Record';
 import {SwitchTab} from './Index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -14,9 +14,11 @@ const Home = ({ navigation }) => {
    
     const [allStates] = useState(['Income', 'Expense', 'All']);
     const [switchState, setSwitchState] = useState(allStates[2])
-    const { transactions, balance } = useTransactions();
+    const { transactions, balance } = useTransactions(0);
 
     const filteredTransactions = switchState === 'All' ? transactions : transactions.filter(transaction => transaction.type === switchState);
+
+
 
 
     
@@ -31,8 +33,8 @@ const Home = ({ navigation }) => {
                     source={require('../assets/icons/stockUser.png')}
                     resizeMode="contain"
                     style={{
-                    width: 60,
-                    height: 60,
+                    width: 50,
+                    height: 50,
                     
                     }}
                 />
@@ -40,54 +42,60 @@ const Home = ({ navigation }) => {
         </View>
 
         {/* Balance View Area */}
-        <TouchableOpacity style={styles.balanceContainer}>
+        
         <LinearGradient 
-        colors={['#4562ab','#00144a']}
-        style={styles.balance}>
-            <Text style={{color: '#FFFFFF', fontSize: 40, fontWeight: '700', paddingLeft: 20, position: 'absolute'}}>Rs: {balance}</Text>
-            <Text style={{color: 'rgba(255,255,255,0.4)', fontSize: 20, fontWeight: '700', right: 30, bottom: 30, position: 'absolute'}}>LKR</Text>
+            colors={['#2c3763','#2c3763']}
+            style={styles.balance}>
+                <Text style={{color: 'rgba(255, 255, 255, 0.4)', fontSize: 15, fontWeight: '700', position: 'absolute'}}>Balance</Text>
+            <Text style={{color: '#ffffff', fontSize: 50, fontWeight: '500', position: 'absolute', paddingTop: 30}}>Rs: {balance}</Text>
+            <Text style={{color: 'rgba(255, 255, 255, 0.4)', fontSize: 15, fontWeight: '700', right: 30, bottom: 30, position: 'absolute'}}>LKR</Text>
         </LinearGradient>
-        </TouchableOpacity>
+        
 
         {/* Select Income or Expences to Display Area */}
-        <View style={styles.middleLayer}>
-            <SwitchTab
-            allStates={allStates}
-            switchState={switchState}
-            setSwitchState={setSwitchState}
-            />
-        </View>
+        <View style={styles.secondLayer}>
+        <Text style={{paddingLeft: 20,paddingTop: 20, fontWeight: '700', fontSize: 18, color: '#000000'}}>Transactions</Text>
+            <View style={styles.middleLayer}>
+                <SwitchTab
+                    allStates={allStates}
+                    switchState={switchState}
+                    setSwitchState={setSwitchState}
+                />
+            </View>
 
-        {/* transactions viewving area */}
-        <ScrollView 
-        contentContainerStyle={styles.transactionView}
-        alwaysBounceVertical={true}
-        >
-            {filteredTransactions.map((transaction, index) => (
-        <Record
-          key={index}
-          type={transaction.type}
-          category={transaction.category}
-          amount={transaction.amount} // Combine category and amount as value
-        />
-      ))}
-        </ScrollView>
+
+            {/* transactions viewving area */}
+            <FlatList
+                data={filteredTransactions}
+                renderItem={({ item }) => (
+                    <Record
+                    type={item.type}
+                    category={item.category}
+                    amount={item.amount} // Combine category and amount as value
+                    />
+                )}
+                keyExtractor={(item, index) => index.toString()}
+                contentContainerStyle={styles.transactionView}
+                alwaysBounceVertical={true}
+                showsVerticalScrollIndicator={false}
+            />
+            
         
-    
-        {/* Adding Button */}
-        <TouchableOpacity 
-        style={styles.addingButton} 
-        onPress={()=>navigation.navigate('AddTransaction')}
-        
-        >
-        <Image 
-            source={require('../assets/icons/plusButton.png')}
-            resizeMode="contain"
-            style={{
-            width: 60,
-            height: 60,
-            }}/>
-        </TouchableOpacity>
+            {/* Adding Button */}
+            <TouchableOpacity 
+            style={styles.addingButton} 
+            onPress={()=>navigation.navigate('AddTransaction')}
+            
+            >
+            <Image 
+                source={require('../assets/icons/plusButton.png')}
+                resizeMode="contain"
+                style={{
+                width: 60,
+                height: 60,
+                }}/>
+            </TouchableOpacity>
+        </View>
 
     </SafeAreaView>
   );
@@ -98,12 +106,11 @@ const styles = StyleSheet.create({
 
     container:{
         flex: 1,
-        backgroundColor: '#f2f2f2',
-        marginBottom: 90
+        backgroundColor: '#2c3763',
+        marginBottom: 70
 
     },
     firstLayer:{
-        
         flexDirection: 'row',
         justifyContent:'space-between',
         marginBottom: 12,
@@ -112,28 +119,34 @@ const styles = StyleSheet.create({
         
         
     },
+
+    secondLayer: {
+        borderWidth: 1,
+        borderColor: '#000000',
+        flex: 1,
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40,
+        marginTop: 20,
+        backgroundColor: '#C4C5DA',
+        
+        
+    },
     title:{
         fontSize: 32,
         fontWeight: '700',
-        color: '#1d1d1d',
+        color: '#ffffff',
         marginBottom: 7
     },
     
-    balanceContainer:{
-        alignSelf: 'center',
-        marginTop: 20,
-        
-    },
     balance:{
         width: 320,
         height: 150,
-        borderRadius: 20,
-        backgroundColor: '#2f497d',
-        flexDirection: 'row',
-        alignItems: 'center', 
+        alignItems: 'center',
+        alignSelf: 'center', 
+    
     },
     middleLayer:{
-        marginTop: 40,
+        marginTop: 20,
         marginBottom: 10
     },
     buttonText:{
@@ -154,7 +167,7 @@ const styles = StyleSheet.create({
     },
     transactionView:{ 
         alignItems: 'center',
-        flexGrow: 1,   
+        paddingBottom: 40,
     }
 })
 

@@ -16,8 +16,7 @@ const SwitchTab = ({allStates, switchState, setSwitchState}) => {
       allStates={allStates}
       currentState={switchState}
       changeState={setSwitchState}
-      // mode={'white'}
-      styleActiveStateGradient={['#466ac5', '#23308e']}
+      mode={'white'}
       styleActiveStateText={{
         fontSize: 15,
         fontWeight: '700'
