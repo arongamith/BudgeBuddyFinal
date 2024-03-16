@@ -22,7 +22,7 @@ const Tabs = () => {
             unmountOnBlur: true,
             tabBarStyle: {
               position: 'absolute',
-              backgroundColor: '#C4C5DA',
+              backgroundColor: '#26295f',
               height: '9%',
               width: "100%",
               
@@ -40,12 +40,11 @@ const Tabs = () => {
                     source={require('../assets/icons/home.png')}
                     resizeMode="contain"
                     style={{
-                      width: 25,
-                      height: 25,
-                      tintColor: focused ? '#1d1d1d' : '#748c94',
+                      width: 20,
+                      height: 20,
+                      tintColor: focused ? '#ffffff' : '#c0c0c0',
                     }}
                   />
-                  <Text style={{ color: focused ? '#1d1d1d' : '#748c94', fontSize: 11 }}>HOME</Text>
                 </View>
               ),
             }}
@@ -61,12 +60,11 @@ const Tabs = () => {
                     source={require('../assets/icons/goal.png')}
                     resizeMode="contain"
                     style={{
-                      width: 25,
-                      height: 25,
-                      tintColor: focused ? '#1d1d1d' : '#748c94',
+                      width: 20,
+                      height: 20,
+                      tintColor: focused ? '#ffffff' : '#c0c0c0',
                     }}
                   />
-                  <Text style={{ color: focused ? '#1d1d1d' : '#748c94', fontSize: 11 }}>GOALS</Text>
                 </View>
               ),
             }}
@@ -82,12 +80,11 @@ const Tabs = () => {
                     source={require('../assets/icons/bar-chart.png')}
                     resizeMode="contain"
                     style={{
-                      width: 25,
-                      height: 25,
-                      tintColor: focused ? '#1d1d1d' : '#748c94',
+                      width: 20,
+                      height: 20,
+                      tintColor: focused ? '#ffffff' : '#c0c0c0',
                     }}
                   />
-                  <Text style={{ color: focused ? '#1d1d1d' : '#748c94', fontSize: 11 }}>STATS</Text>
                 </View>
               ),
             }}
@@ -103,12 +100,11 @@ const Tabs = () => {
                     source={require('../assets/icons/settings.png')}
                     resizeMode="contain"
                     style={{
-                      width: 25,
-                      height: 25,
-                      tintColor: focused ? '#1d1d1d' : '#748c94',
+                      width: 20,
+                      height: 20,
+                      tintColor: focused ? '#ffffff' : '#c0c0c0',
                     }}
                   />
-                  <Text style={{ color: focused ? '#1d1d1d' : '#748c94', fontSize: 11 }}>SETTINGS</Text>
                 </View>
               ),
             }}

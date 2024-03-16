@@ -54,7 +54,9 @@ const Home = ({ navigation }) => {
 
         {/* Select Income or Expences to Display Area */}
         <View style={styles.secondLayer}>
-        <Text style={{paddingLeft: 20,paddingTop: 20, fontWeight: '700', fontSize: 18, color: '#000000'}}>Transactions</Text>
+            <Text style={{paddingLeft: 20,paddingTop: 20, fontWeight: '700', fontSize: 18, color: '#000000'}}>Transactions</Text>
+
+            {/* Swtich Selector */}
             <View style={styles.middleLayer}>
                 <SwitchTab
                     allStates={allStates}
@@ -82,19 +84,23 @@ const Home = ({ navigation }) => {
             
         
             {/* Adding Button */}
-            <TouchableOpacity 
-            style={styles.addingButton} 
-            onPress={()=>navigation.navigate('AddTransaction')}
-            
+            <LinearGradient 
+                colors={['#000000','#121315','#626161']}
+                style={styles.addingButton} 
             >
-            <Image 
-                source={require('../assets/icons/plusButton.png')}
-                resizeMode="contain"
-                style={{
-                width: 60,
-                height: 60,
-                }}/>
-            </TouchableOpacity>
+                <TouchableOpacity 
+                    onPress={()=>navigation.navigate('AddTransaction')}
+                
+                >
+                <Image 
+                    source={require('../assets/icons/plusButton.png')}
+                    resizeMode="contain"
+                    style={{
+                    width: 60,
+                    height: 60,
+                    }}/>
+                </TouchableOpacity>
+            </LinearGradient>
         </View>
 
     </SafeAreaView>
@@ -146,7 +152,7 @@ const styles = StyleSheet.create({
     
     },
     middleLayer:{
-        marginTop: 20,
+        marginTop: 35,
         marginBottom: 10
     },
     buttonText:{
@@ -154,16 +160,17 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     addingButton:{
-        width: 60,
-        height: 60,
+        width: 50,
+        height: 50,
         borderRadius: 100,
         position: 'absolute',
-        right: 30,
-        bottom: 15,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#0B0C11',
-        opacity: 0.2
+        backgroundColor: '#2b3359',
+        opacity: 1,
+        right: 20,
+        top: 10
+        
     },
     transactionView:{ 
         alignItems: 'center',

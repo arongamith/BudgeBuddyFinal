@@ -7,23 +7,34 @@ const BarChartComponent = ({data}) => {
     <View>
       <BarChart
         data={data}
-        width={Dimensions.get("window").width} // from react-native
-        height={220}
-        yAxisLabel={" Rs "}
+        width={Dimensions.get("window").width -20}
+        height={280}
+        yAxisLabel="Rs "
         flatColor={true}
         fromZero={true}
-        withInnerLines={false}
+        withInnerLines={true}
         showBarTops={false}
         withCustomBarColorFromData={true}
+        verticalLabelRotation={30}
         chartConfig={{
           backgroundColor: "transparent",
-          backgroundGradientFrom: "#f2f2f2",
-          backgroundGradientTo: "#f2f2f2",
+          backgroundGradientFrom: "#ffffff",
+          backgroundGradientTo: "#ffffff",
           backgroundGradientToOpacity: 0,
-          decimalPlaces: 2, // optional, defaults to 2dp
+          decimalPlaces: 0, 
           color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
           barPercentage: 0.3,
+        
         }}
+        style={{
+          borderRadius: 16,
+          shadowColor: '#171717',
+          shadowOffset: {width: 2, height: 4},
+          shadowOpacity: 0.2,
+          shadowRadius: 3,
+        }}
+        
+        
       />
     </View>
   )

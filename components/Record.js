@@ -9,19 +9,21 @@ const Record = ({type,category,amount}) => {
   const windowWidth = Dimensions.get('window').width;
 
   return (
-    <LinearGradient 
-    colors={['#ffffff','#ffffff','#ffffff']}
-    style={styles.record}>
-        {/* <Image 
-        source={require('../assets/icons/GoogleLogoPNGImage.png')}
-        resizeMode='contain'
-        style={{
-          height: "100%",
-          width: "10%"
-        }}/> */}
-      <Text style={styles.categoryText}>{category}</Text>
-      <Text style={styles.amountText}>{`${sign} ${amount}`}</Text>
-    </LinearGradient>
+    <View style={styles.shadow}>
+      <LinearGradient 
+      colors={['#ffffff','#ffffff','#ffffff']}
+      style={styles.record}>
+          {/* <Image 
+          source={require('../assets/icons/GoogleLogoPNGImage.png')}
+          resizeMode='contain'
+          style={{
+            height: "100%",
+            width: "10%"
+          }}/> */}
+        <Text style={styles.categoryText}>{category}</Text>
+        <Text style={styles.amountText}>{`${sign} ${amount}`}</Text>
+      </LinearGradient>
+    </View>
   )
 }
 
@@ -49,6 +51,14 @@ const styles = StyleSheet.create({
       color: '#000000',
       fontSize: 20,
       fontWeight: '500',
+    },
+
+    shadow:{
+      shadowColor: '#171717',
+      shadowOffset: {width: -2, height: 4},
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
+      
     }
     
 })
