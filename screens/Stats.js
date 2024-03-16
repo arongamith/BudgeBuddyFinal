@@ -23,7 +23,7 @@ const Stats = () => {
     const data = {}; // Object to store total amounts for each time period
 
     filteredTransactions.forEach((transaction) => {
-      const date = new Date(); // Use actual transaction date instead
+      const date = new Date(); // Use actual transaction date 
       let key = '';
       if (time === 'Weekly') {
         const weekNumber = getWeekNumber(date);
