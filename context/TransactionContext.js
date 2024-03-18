@@ -24,7 +24,7 @@ export const TransactionProvider = ({ children }) => {
     
       Alert.alert(
         'Confirm Deletion',
-        `Are you sure you want to delete the ${transactionToDelete.type.toLowerCase()} transaction?`,
+        `Are you sure you want to delete the ${transactionToDelete.category} transaction?`,
         [
           {
             text: 'Cancel',
