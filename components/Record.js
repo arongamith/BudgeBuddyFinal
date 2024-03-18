@@ -1,15 +1,15 @@
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native'
 import React from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 
 
-const Record = ({type,category,amount}) => {
+const Record = ({type,category,amount, onDelete}) => {
 
   const sign = type === 'Income' ? '+' : '-';
   const windowWidth = Dimensions.get('window').width;
 
   return (
-    <View style={styles.shadow}>
+    <TouchableOpacity style={styles.shadow} onLongPress={onDelete}>
       <LinearGradient 
       colors={['#ffffff','#ffffff','#ffffff']}
       style={styles.record}>
@@ -23,7 +23,7 @@ const Record = ({type,category,amount}) => {
         <Text style={styles.categoryText}>{category}</Text>
         <Text style={styles.amountText}>{`${sign} ${amount}`}</Text>
       </LinearGradient>
-    </View>
+    </TouchableOpacity>
   )
 }
 

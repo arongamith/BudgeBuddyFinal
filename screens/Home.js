@@ -14,7 +14,7 @@ const Home = ({ navigation }) => {
    
     const [allStates] = useState(['Income', 'Expense', 'All']);
     const [switchState, setSwitchState] = useState(allStates[2])
-    const { transactions, balance } = useTransactions(0);
+    const { transactions, balance, deleteTransaction } = useTransactions(0);
 
     const filteredTransactions = switchState === 'All' ? transactions : transactions.filter(transaction => transaction.type === switchState);
 
@@ -69,11 +69,12 @@ const Home = ({ navigation }) => {
             {/* transactions viewving area */}
             <FlatList
                 data={filteredTransactions}
-                renderItem={({ item }) => (
+                renderItem={({ item, index }) => (
                     <Record
                     type={item.type}
                     category={item.category}
-                    amount={item.amount} // Combine category and amount as value
+                    amount={item.amount}
+                    onDelete={() => deleteTransaction(index)}
                     />
                 )}
                 keyExtractor={(item, index) => index.toString()}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, TextInput, } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, TextInput,KeyboardAvoidingView } from 'react-native';
 import DropdownComponent from '../components/DropDownList';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTransactions } from '../context/TransactionContext';
@@ -101,6 +101,7 @@ const AddTransaction = ({ navigation }) => {
   }
   
   return (
+    
     <SafeAreaView style={styles.container}>
       
       {/* Input Area */}
@@ -117,12 +118,13 @@ const AddTransaction = ({ navigation }) => {
         setValue={(text) => setCategory(text)}
         placeholder={"Select Category"}
       />
-
+    
       <TextInput
         placeholder='Amount'
         style={styles.input}
         keyboardType='numeric'
         onChangeText={(value)=>setAmount(value)}
+        
       />
 
       <TouchableOpacity 
@@ -172,7 +174,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     justifyContent: 'center',
     marginVertical: 10,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   button:{
     paddingVertical: 15,
