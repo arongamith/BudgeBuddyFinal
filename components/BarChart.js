@@ -18,8 +18,8 @@ const BarChartComponent = ({data}) => {
         verticalLabelRotation={30}
         chartConfig={{
           backgroundColor: "transparent",
-          backgroundGradientFrom: "#ffffff",
-          backgroundGradientTo: "#ffffff",
+          backgroundGradientFrom: "#f2f2f2",
+          backgroundGradientTo: "#f2f2f2",
           backgroundGradientToOpacity: 0,
           decimalPlaces: 0, 
           color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
@@ -28,10 +28,7 @@ const BarChartComponent = ({data}) => {
         }}
         style={{
           borderRadius: 16,
-          shadowColor: '#171717',
-          shadowOffset: {width: 2, height: 4},
-          shadowOpacity: 0.2,
-          shadowRadius: 3,
+          
         }}
         
         

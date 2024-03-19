@@ -13,20 +13,15 @@ const AddTransaction = ({ navigation }) => {
   const [amount, setAmount] = useState('');
 
   const handleAddTransaction = () => {
-    addTransaction(type, category, amount); // Ensure type is 'Expense' for expenses
+    addTransaction(type, category, amount);
     setAmount('');
   };
 
-  
   // List of Data
   const transactionType = [
     { label: 'Income', value: 'Income' },
     { label: 'Expense', value: 'Expense' },
   ];
-
-  
-
-  
 
   const incomeList = [
     { label: 'Salery', value: 'Salery' },

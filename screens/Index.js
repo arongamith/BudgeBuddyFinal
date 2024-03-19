@@ -18,7 +18,9 @@ import AuthStack from "../navigation/AuthStack";
 import Tabs from "../components/NavTab";
 import BarChartComponent from "../components/BarChart";
 import SwitchTab from "../components/SwitchSelector";
-
+import AddGoal from "./AddGoal";
+import DatePick from "../components/DatePick";
+import GoalComponent from "../components/GoalComponent";
 
 export{
     Login,
@@ -40,5 +42,8 @@ export{
     AuthStack,
     Tabs,
     BarChartComponent,
-    SwitchTab
+    SwitchTab,
+    AddGoal,
+    DatePick,
+    GoalComponent
 }
