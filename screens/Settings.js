@@ -1,7 +1,27 @@
 import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 
 const Settings = ( { navigation } ) => {
+
+  const onPressLogOut = ()=> {
+
+    Alert.alert(
+      "Confirm",
+      "Are you sure you want to Log Out ?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        {
+          text: "Log Out",
+          onPress: () => navigation.navigate('LogOut')
+        }
+      ]
+    );
+  }
+
+
   return (
     <SafeAreaView style={styles.container}>
 
@@ -19,7 +39,7 @@ const Settings = ( { navigation } ) => {
           <Text style={styles.tileText}>Support</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.tile} onPress={()=> navigation.navigate('LogOut')}>
+        <TouchableOpacity style={styles.tile} onPress={onPressLogOut}>
           <Text style={styles.tileText}>Log Out</Text>
         </TouchableOpacity>
       </View>

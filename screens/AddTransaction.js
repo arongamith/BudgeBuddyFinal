@@ -37,7 +37,7 @@ const AddTransaction = ({ navigation }) => {
     { label: 'Tips', value: 'Tips'},
     { label: 'Commision Earnings', value: 'Commision Earnings'},
     { label: 'Gifts', value: 'gifts'},
-    { label: 'Online Income (e.g., blogging, affiliate marketing) ', value: 'OnlineIncome'},
+    { label: 'Online Income (e.g., blogging, affiliate marketing) ', value: 'Online Income'},
     { label: 'Part-Time Job Income', value: 'Part-Time Job'},
     { label: 'Schorlarship', value: 'Scholarship'},
     { label: 'Fellowship Stipend', value: 'Fellowship Stipend'},

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, FlatList, TextInput, ScrollView } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, FlatList, TextInput, ScrollView, Dimensions} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { CustomButton, GoalComponent, AddGoal } from './Index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const Goal = ( {navigation,} ) => {
+const Goal = ( {navigation} ) => {
 
   const [goals, setGoals] = useState([]);
+
 
   useEffect(() => {
     // Load goals from AsyncStorage when component mounts
@@ -45,9 +46,18 @@ const Goal = ( {navigation,} ) => {
     saveGoals(updatedGoals); // Save updated goals to AsyncStorage
   };
 
+  const handleDeleteGoal = (index) => {
+    const updatedGoals = [...goals]; // Create a copy of the goals array
+    updatedGoals.splice(index, 1); // Remove the goal at the specified index
+    setGoals(updatedGoals); // Update the state
+    saveGoals(updatedGoals); 
+  };
+
   const renderItem = ({ item }) => (
     <GoalComponent title={item.title} date={item.date} amount={item.amount} />
   );
+
+  
 
 
   return (
@@ -57,14 +67,20 @@ const Goal = ( {navigation,} ) => {
         <Text style={styles.title}>Goals</Text>
       </View>
 
-      {goals.length > 0 && (
-        <FlatList
-          style={styles.goalListContainer}
-          data={goals}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      )}
+      <FlatList
+        style={styles.goalListContainer}
+        data={goals}
+        renderItem={({ item, index }) => (
+          <GoalComponent
+            title={item.title}
+            date={item.date}
+            amount={item.amount}
+            onDelete={() => handleDeleteGoal(index)} // Pass onDelete function here
+          />
+        )}
+        keyExtractor={(item, index) => index.toString()}
+        showsVerticalScrollIndicator={false}
+      />
 
     <View style={styles.button}>
       <CustomButton 
@@ -101,16 +117,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: "50%",
     position: 'absolute',
-    bottom: 100
+    bottom: 100,
   },
   goalListContainer:{
-    marginBottom: 125,
-    backgroundColor: "#2a2d69",
-    borderTopLeftRadius:30,
-    borderTopRightRadius: 30,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    marginHorizontal: 5
+    marginBottom: Dimensions.get('window').width - 270,
   }
 })
 
