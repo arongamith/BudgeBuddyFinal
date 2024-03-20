@@ -21,6 +21,7 @@ import SwitchTab from "../components/SwitchSelector";
 import AddGoal from "./AddGoal";
 import DatePick from "../components/DatePick";
 import GoalComponent from "../components/GoalComponent";
+import Investments from "./Investments";
 
 export{
     Login,
@@ -45,5 +46,6 @@ export{
     SwitchTab,
     AddGoal,
     DatePick,
-    GoalComponent
+    GoalComponent,
+    Investments
 }
