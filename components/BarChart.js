@@ -1,6 +1,6 @@
-import { View, Text, Dimensions } from 'react-native'
-import React from 'react'
-import { BarChart } from 'react-native-chart-kit'
+import { View, Text, Dimensions } from 'react-native';
+import React from 'react';
+import { BarChart } from 'react-native-chart-kit';
 
 const BarChartComponent = ({data}) => {
   return (
