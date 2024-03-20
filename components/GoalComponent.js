@@ -25,10 +25,11 @@ const styles = StyleSheet.create({
   goal: {
     width: Dimensions.get('window').width - 100,
     height: 200,
-    paddingVertical: 10,
+    paddingVertical: 5,
     paddingHorizontal: 20,
     borderRadius: 20,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginVertical: 10
   },
   title: {
     fontWeight: '700',

@@ -59,6 +59,7 @@ const Goal = ( {navigation,} ) => {
 
       {goals.length > 0 && (
         <FlatList
+          style={styles.goalListContainer}
           data={goals}
           renderItem={renderItem}
           keyExtractor={(item, index) => index.toString()}
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
 
   container:{
       flex: 1,
-      backgroundColor: '#f2f2f2',
+      backgroundColor: '#C4C5DA',
   },
   firstLayer:{
     flexDirection: 'row',
@@ -101,6 +102,15 @@ const styles = StyleSheet.create({
     width: "50%",
     position: 'absolute',
     bottom: 100
+  },
+  goalListContainer:{
+    marginBottom: 125,
+    backgroundColor: "#2a2d69",
+    borderTopLeftRadius:30,
+    borderTopRightRadius: 30,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+    marginHorizontal: 5
   }
 })
 
