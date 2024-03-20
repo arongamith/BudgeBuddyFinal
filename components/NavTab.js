@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {Home,Goals,Settings,Stats,AddTransaction} from '../screens/Index'
+import {Home,Goals,Settings,Stats,AddTransaction, Investments} from '../screens/Index'
 
 
 
@@ -89,6 +89,27 @@ const Tabs = () => {
               ),
             }}
           />
+
+          <Tab.Screen // Stats Screen Tab
+                      name="Investments"
+                      component={Investments}
+                      options={{
+                        tabBarIcon: ({ focused }) => (
+                          <View style={{ alignItems: 'center', justifyContent: 'center', }}>
+                            <Image
+                              source={require('../assets/icons/investment.png')}
+                              resizeMode="contain"
+                              style={{
+                                width: 20,
+                                height: 20,
+                                tintColor: focused ? '#ffffff' : '#c0c0c0',
+                              }}
+                            />
+                          </View>
+                        ),
+                      }}
+                    />
+
 
           <Tab.Screen // Settings Screen Tab
             name="Settings"
