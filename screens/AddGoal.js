@@ -25,8 +25,10 @@ const AddGoal = ({ navigation, route }) => {
   }; 
 
   const handleDateChange = (selectedDate) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' }; // Specify desired date format options
+    const formattedDate = selectedDate.toLocaleDateString('en-US', options); // Format the date
+    
     setDate(selectedDate);
-    const formattedDate = selectedDate.toISOString().split('T')[0]; // Get date in yyyy-mm-dd format
     setDateString(formattedDate);
   };
 
