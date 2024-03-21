@@ -100,7 +100,7 @@ const Stats = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#C4C5DA',
     marginBottom: 90,
   },
   firstLayer: {

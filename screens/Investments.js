@@ -32,7 +32,7 @@ const Investments = () => {
 const styles  = StyleSheet.create({
     container: {
         flex: 1,
-        
+        backgroundColor: '#C4C5DA',
     },
 
     firstLayer: {

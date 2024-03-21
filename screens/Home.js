@@ -59,11 +59,10 @@ const Home = ({ navigation }) => {
         </View>
 
         {/* Balance View Area */}
-        
         <LinearGradient 
             colors={['#2c3763','#2c3763']}
             style={styles.balance}>
-                <Text style={{color: 'rgba(255, 255, 255, 0.4)', fontSize: 15, fontWeight: '700', position: 'absolute'}}>Balance</Text>
+            <Text style={{color: 'rgba(255, 255, 255, 0.4)', fontSize: 15, fontWeight: '700', position: 'absolute'}}>Balance</Text>
             <Text style={{color: '#ffffff', fontSize: 50, fontWeight: '500', position: 'absolute', paddingTop: 30}}>Rs: {balance}</Text>
             <Text style={{color: 'rgba(255, 255, 255, 0.4)', fontSize: 15, fontWeight: '700', right: 30, bottom: 30, position: 'absolute'}}>LKR</Text>
         </LinearGradient>
