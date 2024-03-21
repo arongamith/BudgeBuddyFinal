@@ -22,6 +22,7 @@ import AddGoal from "./AddGoal";
 import DatePick from "../components/DatePick";
 import GoalComponent from "../components/GoalComponent";
 import Investments from "./Investments";
+import BudgetPlan from "./BudgetPlan";
 
 export{
     Login,
@@ -47,5 +48,6 @@ export{
     AddGoal,
     DatePick,
     GoalComponent,
-    Investments
+    Investments,
+    BudgetPlan
 }

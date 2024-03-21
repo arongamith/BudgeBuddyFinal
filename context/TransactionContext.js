@@ -11,6 +11,7 @@ export const TransactionProvider = ({ children }) => {
     useEffect(() => {
         loadBalance();
         
+        
     }, []);
 
     const loadBalance = async () => {
@@ -43,10 +44,23 @@ export const TransactionProvider = ({ children }) => {
         
     };
 
-  //   const updateBalance = (newBalance) => {
-  //     setBalance(newBalance);
-  //     saveBalance(newBalance);
-  // };
+    // const updateBalance = (newBalance) => {
+    //     setBalance(newBalance);
+    //     saveBalance(newBalance);
+    // };
+
+    // const clearStoredBalance = async () => {
+    //     try {
+    //         await AsyncStorage.removeItem('balance');
+    //         setBalance(0); // Reset the balance in state
+    //     } catch (error) {
+    //         console.error('Error clearing stored balance:', error);
+    //     }
+    // };
+
+    
+
+  
 
   
 

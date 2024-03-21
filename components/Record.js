@@ -6,7 +6,8 @@ import LinearGradient from 'react-native-linear-gradient';
 const Record = ({type,category,amount, onDelete}) => {
 
   const sign = type === 'Income' ? '+' : '-';
-  const windowWidth = Dimensions.get('window').width;
+  const color = type === 'Income' ? "#09ff00" : "#ff0000"
+  const formattedDate = new Date().toLocaleDateString();
 
   return (
     <TouchableOpacity style={styles.shadow} onLongPress={onDelete}>
@@ -20,8 +21,9 @@ const Record = ({type,category,amount, onDelete}) => {
             height: "100%",
             width: "10%"
           }}/> */}
+        <Text style={styles.date}>{formattedDate}</Text>
         <Text style={styles.categoryText}>{category}</Text>
-        <Text style={styles.amountText}>{`${sign} ${amount}`}</Text>
+        <Text style={[styles.amountText, { color: color }]}>{`${sign} ${amount}`}</Text>
       </LinearGradient>
     </TouchableOpacity>
   )
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
       fontSize: 20
     },
     amountText:{
-      color: '#000000',
+      
       fontSize: 20,
       fontWeight: '500',
     },
@@ -59,6 +61,10 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.2,
       shadowRadius: 3,
       
+    },
+    date:{
+      fontSize: 12,
+      opacity: 0.3
     }
     
 })

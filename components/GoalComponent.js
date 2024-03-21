@@ -1,23 +1,47 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Alert } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-const GoalComponent = ({ title, date, amount }) => {
+
+
+
+
+
+const GoalComponent = ({ title, date, amount, onDelete, navigation }) => {
+
+ 
+  const handleDelete = () => {
+    Alert.alert(
+      "Confirm Deletion",
+      "Are you sure you want to delete this goal?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        {
+          text: "Delete",
+          onPress: () => onDelete()
+        }
+      ]
+    );
+  };
+
   return (
-    <View>
+    <TouchableOpacity onLongPress={handleDelete}>
       <LinearGradient
         colors={['#ffffff', '#ffffff', '#ffffff']}
         style={styles.goal}
       >
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subTitles}>Amount: {amount}</Text>
+        <Text style={styles.subTitles}>Amount: Rs: {amount}</Text>
         <Text style={styles.subTitles}>Date of Achievement: {date}</Text>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={navigation}>
           <Text style={{ color: "#FFFFFF", fontWeight: '700' }}>Get a budget Plan</Text>
         </TouchableOpacity>
       </LinearGradient>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -39,7 +63,7 @@ const styles = StyleSheet.create({
   },
   subTitles: {
     paddingVertical: 8,
-    fontWeight: '500'
+    fontWeight: '400'
   },
   button: {
     alignSelf: 'center',
@@ -51,6 +75,8 @@ const styles = StyleSheet.create({
     height: 40,
     marginTop: 15,
     backgroundColor: "#1d2075"
+  },
+  editDeleteButton:{  
   }
 });
 

@@ -1,17 +1,28 @@
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native'
-import React from 'react'
+import React,{ useState } from 'react'
+import { SwitchTab } from './Index';
 
 const Investments = () => {
+
+  const [options] = useState(['Gold','Real Estate','Fixed Deposit']);
+  const [investmentType, setInvestmentType] = useState(options[0]);
+  
+
   return (
     <SafeAreaView style={styles.container}>
 
 
-        <View>
+        <View style={styles.firstLayer}>
             <Text style={styles.title}>Investments</Text>
         </View>
 
-        
-
+      <View style={styles.swtichButton}>
+        <SwitchTab
+          allStates={options}
+          switchState={investmentType}
+          setSwitchState={setInvestmentType}
+        />
+      </View>
 
 
     </SafeAreaView>
@@ -23,12 +34,22 @@ const styles  = StyleSheet.create({
         flex: 1,
         
     },
+
+    firstLayer: {
+        flexDirection: 'row',
+        paddingHorizontal: 24,
+        marginBottom: 12,
+        paddingTop: 20,
+      },
     title: {
-        fontSize: 25,
+        fontSize: 32,
         fontWeight: '700',
-        paddingLeft: 20,
-        paddingTop: 20
+        color: '#1d1d1d',
+        marginBottom: 7,
         
+    },
+    swtichButton: {
+      marginTop: 10
     }
 })
 

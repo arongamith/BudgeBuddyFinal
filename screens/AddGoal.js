@@ -4,6 +4,8 @@ import { DatePick } from './Index';
 
 
 const AddGoal = ({ navigation, route }) => {
+  
+
 
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(new Date());
@@ -11,6 +13,7 @@ const AddGoal = ({ navigation, route }) => {
   const [open, setOpen] = useState(false)
   const { handleAddGoal } = route.params;
   const [dateString, setDateString] = useState(date.toString());
+  
 
   const handleSetGoal = () => {
     if (!title || !amount || !date) {
@@ -22,9 +25,13 @@ const AddGoal = ({ navigation, route }) => {
   }; 
 
   const handleDateChange = (selectedDate) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' }; // Specify desired date format options
+    const formattedDate = selectedDate.toLocaleDateString('en-US', options); // Format the date
+    
     setDate(selectedDate);
-    setDateString(selectedDate.toString()); // Update dateString when date changes
+    setDateString(formattedDate);
   };
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -50,6 +57,7 @@ const AddGoal = ({ navigation, route }) => {
       <TextInput
         placeholder='Amount'
         style={styles.input}
+        keyboardType='numeric'
         onChangeText={(value) => setAmount(value)}
       />
 
@@ -62,7 +70,7 @@ const AddGoal = ({ navigation, route }) => {
         onPress={() => setOpen(true)}
         onConfirm={(date) => {
           setOpen(false)
-          setDate(date)
+          handleDateChange(date);
         }}
         onCancel={() => {
           setOpen(false)

@@ -14,6 +14,8 @@ const DatePick = ({open,title,date, onPress, onConfirm, onCancel}) => {
         onConfirm={onConfirm}
         onCancel={onCancel}
         mode="date"
+        androidVariant='iosClone'
+       
         
       />
     </View>

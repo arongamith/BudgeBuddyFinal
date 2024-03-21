@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { AddTransaction, Home, Login, Tabs, UserProfile, AuthStack, AddGoal } from '../screens/Index';
+import { AddTransaction, Home, Login, Tabs, UserProfile, AuthStack, AddGoal, BudgetPlan } from '../screens/Index';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TransactionProvider } from '../context/TransactionContext';
 import { GoalProvider } from './GoalContext';
@@ -20,6 +20,7 @@ const HomeStack = () => {
           options={{headerShown: false}}
           />
 
+          
           <Stack.Screen
           name='AddTransaction'
           component={AddTransaction}
@@ -44,6 +45,15 @@ const HomeStack = () => {
           options={{
             headerBackTitleVisible: false,
             headerTitle: "Create a Goal"
+          }}
+          />
+
+        <Stack.Screen
+          name="BudgetPlan"
+          component={BudgetPlan}
+          options={{
+            headerBackTitleVisible: false,
+            headerTitle: "Budget Plan"
           }}
           />
 
