@@ -56,18 +56,6 @@ const Home = ({ navigation }) => {
        {/* Top Area View with the Page Name and User Picture*/} 
         <View style={styles.firstLayer}>
             <Text style={styles.title}>Home</Text>
-            <TouchableOpacity onPress={()=>navigation.navigate('UserProfile')}>
-                <Image 
-                    source={require('../assets/icons/stockUser.png')}
-                    resizeMode="contain"
-                    style={{
-                    width: 50,
-                    height: 50,
-                    tintColor: '#FFFFFF'
-                    
-                    }}
-                />
-            </TouchableOpacity>
         </View>
 
         {/* Balance View Area */}

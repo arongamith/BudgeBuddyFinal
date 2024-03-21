@@ -15,6 +15,7 @@ const AddTransaction = ({ navigation }) => {
   const handleAddTransaction = () => {
     addTransaction(type, category, amount);
     setAmount('');
+    navigation.goBack()
   };
 
   // List of Data

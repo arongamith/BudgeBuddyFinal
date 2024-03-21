@@ -5,7 +5,9 @@ import LinearGradient from 'react-native-linear-gradient';
 
 
 
-const GoalComponent = ({ title, date, amount, onDelete }) => {
+
+
+const GoalComponent = ({ title, date, amount, onDelete, navigation }) => {
 
  
   const handleDelete = () => {
@@ -35,7 +37,7 @@ const GoalComponent = ({ title, date, amount, onDelete }) => {
         <Text style={styles.subTitles}>Amount: Rs: {amount}</Text>
         <Text style={styles.subTitles}>Date of Achievement: {date}</Text>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={navigation}>
           <Text style={{ color: "#FFFFFF", fontWeight: '700' }}>Get a budget Plan</Text>
         </TouchableOpacity>
       </LinearGradient>

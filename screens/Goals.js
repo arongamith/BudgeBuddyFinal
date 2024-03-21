@@ -57,6 +57,10 @@ const Goal = ( {navigation} ) => {
     <GoalComponent title={item.title} date={item.date} amount={item.amount} />
   );
 
+  const handlePressGetBudgetPlan = (title, amount, date) => {
+    navigation.navigate("BudgetPlan", { title, amount, date });
+  };
+
   
 
 
@@ -76,6 +80,7 @@ const Goal = ( {navigation} ) => {
             date={item.date}
             amount={item.amount}
             onDelete={() => handleDeleteGoal(index)} // Pass onDelete function here
+            navigation={() => handlePressGetBudgetPlan(item.title, item.amount, item.date)}
           />
         )}
         keyExtractor={(item, index) => index.toString()}
