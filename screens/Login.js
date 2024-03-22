@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {CustomInput, CustomButton, Home} from '../screens/Index';
 import {useForm} from 'react-hook-form';
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 
 
@@ -37,9 +38,20 @@ const Login = ({ navigation }) => {
   const onForgotPassword = ()=> {
     navigation.navigate("ForgotPassword")
   }
-  const onLogInGoogle = ()=> {
-    console.warn("Login with Google")
-  }
+  const onLoginGoogle = async () => {
+    
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+  
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
+
+  };
+
 
 
   return (
@@ -104,7 +116,7 @@ const Login = ({ navigation }) => {
       
       <TouchableOpacity 
       style={{alignItems: 'center', top: 50}}
-      onPress={onLogInGoogle}
+      onPress={() => onLoginGoogle().then(() => console.log('Signed in with Google!'))}
       
       >
         <Image
