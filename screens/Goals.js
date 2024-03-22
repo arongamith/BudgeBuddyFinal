@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, FlatList, TextInput, ScrollView, Dimensions} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, SafeAreaView, StyleSheet, FlatList, TextInput, ScrollView, Dimensions,} from 'react-native';
 import { CustomButton, GoalComponent, AddGoal } from './Index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -52,10 +51,6 @@ const Goal = ( {navigation} ) => {
     setGoals(updatedGoals); // Update the state
     saveGoals(updatedGoals); 
   };
-
-  const renderItem = ({ item }) => (
-    <GoalComponent title={item.title} date={item.date} amount={item.amount} />
-  );
 
   const handlePressGetBudgetPlan = (title, amount, date) => {
     navigation.navigate("BudgetPlan", { title, amount, date });

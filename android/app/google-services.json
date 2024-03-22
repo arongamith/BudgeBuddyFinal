@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "298648568548",
+    "project_id": "budgebuddy-38453",
+    "storage_bucket": "budgebuddy-38453.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298648568548:android:565f359b93c090e130e2f1",
+        "android_client_info": {
+          "package_name": "com.budgebuddy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8ryiu3QtVze5B6PTPNiKclbfvTetfbEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

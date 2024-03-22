@@ -2,23 +2,37 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image, ScrollVi
 import React, {useState} from 'react';
 import {CustomInput, CustomButton, Home} from '../screens/Index';
 import {useForm} from 'react-hook-form';
+import auth from '@react-native-firebase/auth';
+
+
 
 
 
 const Login = ({ navigation }) => {
 
+  const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+
   const {control, handleSubmit} = useForm();
 
  
+  const onLogInPress =  async (data)=> {
+    
+    try {
+      await auth().signInWithEmailAndPassword(data.email, data.password);
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      } else if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      } else {
+        console.error(error);
+      }
+    }
 
-  const onLogInPress = (data)=> {
-    console.log(data);
-    // Validate Login Here
-
-    navigation.navigate('HomeStack');
 
 
   }
+  
   const onForgotPassword = ()=> {
     navigation.navigate("ForgotPassword")
   }
@@ -52,11 +66,18 @@ const Login = ({ navigation }) => {
       </View>
 
     
-      <CustomInput 
-      name="username"
-      placeholder={'Username'} 
-      control ={control}
-      rules={{required: 'Username is Required', minLength: {value: 4, message: "Username should be minimum 4 characters long"}}}
+      <CustomInput
+      name={"email"}
+      placeholder={"Email"}
+      control={control}
+      rules={{
+        required: "Email is Required",
+        pattern: {
+          value: EMAIL_REGEX,
+          message: "Email is Invalid"
+        }
+      }}
+
       />
 
       <CustomInput 

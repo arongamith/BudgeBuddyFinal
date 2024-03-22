@@ -9,10 +9,28 @@ export const TransactionProvider = ({ children }) => {
     const [balance, setBalance] = useState(0);
 
     useEffect(() => {
+        loadTransactions();
         loadBalance();
-        
-        
     }, []);
+
+    const loadTransactions = async () => {
+        try {
+            const storedTransactions = await AsyncStorage.getItem('transactions');
+            if (storedTransactions !== null) {
+                setTransactions(JSON.parse(storedTransactions));
+            }
+        } catch (error) {
+            console.error('Error loading transactions:', error);
+        }
+    };
+
+    const saveTransactions = async (updatedTransactions) => {
+        try {
+            await AsyncStorage.setItem('transactions', JSON.stringify(updatedTransactions));
+        } catch (error) {
+            console.error('Error saving transactions:', error);
+        }
+    };
 
     const loadBalance = async () => {
         try {
@@ -32,43 +50,22 @@ export const TransactionProvider = ({ children }) => {
             console.error('Error saving balance:', error);
         }
     };
-  
+
     const addTransaction = (type, category, amount) => {
         const newTransaction = { type, category, amount };
-        setTransactions([...transactions, newTransaction]);
-        
+        const updatedTransactions = [...transactions, newTransaction];
+        setTransactions(updatedTransactions);
+        saveTransactions(updatedTransactions);
+
         // Update balance based on transaction type
         const updatedBalance = type === 'Income' ? balance + parseFloat(amount) : balance - parseFloat(amount);
         setBalance(updatedBalance);
         saveBalance(updatedBalance);
-        
     };
-
-    // const updateBalance = (newBalance) => {
-    //     setBalance(newBalance);
-    //     saveBalance(newBalance);
-    // };
-
-    // const clearStoredBalance = async () => {
-    //     try {
-    //         await AsyncStorage.removeItem('balance');
-    //         setBalance(0); // Reset the balance in state
-    //     } catch (error) {
-    //         console.error('Error clearing stored balance:', error);
-    //     }
-    // };
-
-    
-
-  
-
-  
-
-   
 
     const deleteTransaction = (index) => {
         const transactionToDelete = transactions[index];
-      
+
         Alert.alert(
             'Confirm Deletion',
             `Are you sure you want to delete the ${transactionToDelete.category} transaction?`,
@@ -82,25 +79,25 @@ export const TransactionProvider = ({ children }) => {
                     onPress: () => {
                         const updatedTransactions = [...transactions];
                         const deletedTransaction = updatedTransactions.splice(index, 1)[0];
-            
+
                         // Adjust balance if needed
                         const updatedBalance = deletedTransaction.type === 'Income' ? balance - parseFloat(deletedTransaction.amount) : balance + parseFloat(deletedTransaction.amount);
                         setBalance(updatedBalance);
                         saveBalance(updatedBalance);
-            
+
                         setTransactions(updatedTransactions);
+                        saveTransactions(updatedTransactions);
                     },
                     style: 'destructive',
                 },
             ]
         );
     };
-  
-  
+
     return (
-      <TransactionContext.Provider value={{ transactions, addTransaction, deleteTransaction, balance, setTransactions }}>
-        {children}
-      </TransactionContext.Provider>
+        <TransactionContext.Provider value={{ transactions, addTransaction, deleteTransaction, balance }}>
+            {children}
+        </TransactionContext.Provider>
     );
 };
 

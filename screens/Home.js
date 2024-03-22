@@ -16,34 +16,7 @@ const Home = ({ navigation }) => {
     const [switchState, setSwitchState] = useState(allStates[2])
     const { transactions, balance, deleteTransaction, setTransactions } = useTransactions(0);
 
-    useEffect(() => {
-        loadTransactions();
-    }, []);
-
-    const loadTransactions = async () => {
-        try {
-            const storedTransactions = await AsyncStorage.getItem('transactions');
-            if (storedTransactions !== null) {
-                setTransactions(JSON.parse(storedTransactions));
-            }
-        } catch (error) {
-            console.error('Error loading transactions:', error);
-        }
-    };
-
-    const saveTransactions = async (updatedTransactions) => {
-        try {
-            await AsyncStorage.setItem('transactions', JSON.stringify(updatedTransactions));
-        } catch (error) {
-            console.error('Error saving transactions:', error);
-        }
-    };
-
-    // Whenever transactions state changes, save it to AsyncStorage
-    useEffect(() => {
-        saveTransactions(transactions);
-    }, [transactions]);
-
+   
     const filteredTransactions = switchState === 'All' ? transactions : transactions.filter(transaction => transaction.type === switchState);
 
 
@@ -103,7 +76,7 @@ const Home = ({ navigation }) => {
         
             {/* Adding Button */}
             <LinearGradient 
-                colors={['#000000','#121315','#626161']}
+                colors={['#2c3763','#2c3763','#2c3763']}
                 style={styles.addingButton} 
             >
                 <TouchableOpacity 
@@ -184,7 +157,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2b3359',
         opacity: 1,
         right: 20,
         top: 10
