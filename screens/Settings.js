@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Alert, TextInput } from 'react-native';
+import React from 'react';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 
-const Settings = ({ navigation }) => {
- const [newName, setNewName] = useState('');
+const Settings = ( { navigation } ) => {
 
- const handleNameChange = (name) => {
-    setNewName(name);
- };
+  const onPressLogOut = ()=> {
 
- const onPressLogOut = () => {
-  
- }
+    Alert.alert(
+      "Confirm",
+      "Are you sure you want to Log Out ?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        {
+          text: "Log Out",
+          onPress: () => navigation.navigate('LogOut')
+        }
+      ]
+    );
+  }
 
- const handleSubmit = () => {
-    // Update the user's name in your application's state or backend
-    console.log('New name:', newName);
-    // Optionally, navigate back or show a success message
-    // navigation.goBack();
- };
+
   return (
     <SafeAreaView style={styles.container}>
 
@@ -27,24 +31,10 @@ const Settings = ({ navigation }) => {
 
       <View style={styles.optionsContainer}>
 
-        <TouchableOpacity style={styles.tile} onPress={() => {
-          // Navigate to the 'UserProfile' screen
-          navigation.navigate('UserProfile');
-          // Optionally, show a modal or a separate screen for changing the name
-        }}>
+        <TouchableOpacity style={styles.tile} onPress={()=>navigation.navigate('UserProfile')}>
           <Text style={styles.tileText}>View Profile</Text>
         </TouchableOpacity>
-        <View style={styles.formContainer}>
-          <TextInput
-            style={styles.input}
-            onChangeText={handleNameChange}
-            value={newName}
-            placeholder="Change your name"
-          />
-          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-            <Text style={styles.submitButtonText}>Submit</Text>
-          </TouchableOpacity>
-        </View>
+          
         <TouchableOpacity style={styles.tile}>
           <Text style={styles.tileText}>Support</Text>
         </TouchableOpacity>

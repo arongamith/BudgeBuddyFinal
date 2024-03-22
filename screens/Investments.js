@@ -5,8 +5,7 @@ import { SwitchTab } from './Index';
 const Investments = () => {
 
   const [options] = useState(['Gold','Real Estate','Fixed Deposit']);
-  const [investmentType, setInvestmentType] = useState(options[0]);
-  
+  const [investmentType, setInvestmentType] = useState(options[0]);  
 
   return (
     <SafeAreaView style={styles.container}>

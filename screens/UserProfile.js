@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Image, View, SafeAreaView, StyleSheet } from 'react-native';
+import { Button, Image, View, SafeAreaView, StyleSheet, TouchableOpacity, Text, Dimensions } from 'react-native';
 import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const UserProfile = ({ navigation }) => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [userName, setUserName] = useState('Change your name');
 
   const openImagePicker = () => {
     const options = {
@@ -71,6 +72,10 @@ const UserProfile = ({ navigation }) => {
         </View>
       </View>
 
+      <TouchableOpacity style={styles.tile} onPress = {() => setUserName('Mithila')}>
+          <Text style={styles.tileText}>{userName}</Text>
+        </TouchableOpacity>
+
     </SafeAreaView>
   );
 };
@@ -92,6 +97,19 @@ const styles = StyleSheet.create({
     width: undefined,
     height: undefined,
   },
+
+  tile:{
+    height: '10%',
+    width: Dimensions.get('window').width-50,
+    borderRadius: 10,
+    margin: 1,
+    justifyContent: 'center',
+    backgroundColor: 'rgba(201,201,201,0.4)',
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginTop: 7
+  },
+
 });
 
 export default UserProfile;
