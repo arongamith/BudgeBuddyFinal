@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native'
+import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native'
 import React,{ useState } from 'react'
 import { SwitchTab } from './Index';
 
@@ -29,6 +29,7 @@ const Investments = () => {
   )
 }
 
+ 
 const styles  = StyleSheet.create({
     container: {
         flex: 1,
@@ -37,19 +38,19 @@ const styles  = StyleSheet.create({
 
     firstLayer: {
         flexDirection: 'row',
-        paddingHorizontal: 24,
+        paddingHorizontal: 25,
         marginBottom: 12,
         paddingTop: 20,
       },
     title: {
-        fontSize: 32,
+        fontSize: 33,
         fontWeight: '700',
         color: '#1d1d1d',
         marginBottom: 7,
         
     },
     swtichButton: {
-      marginTop: 10
+      marginTop: 15
     }
 })
 
