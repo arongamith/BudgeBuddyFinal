@@ -3,6 +3,9 @@ import React, {useState} from 'react'
 import { CustomButton, CustomInput } from './Index'
 import {useForm} from 'react-hook-form'
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
+
 
 
 const SignUp = ( {navigation} ) => {
@@ -21,12 +24,21 @@ const SignUp = ( {navigation} ) => {
     }
   
     try {
-      await auth().createUserWithEmailAndPassword(data.email, data.password);
+      await auth().createUserWithEmailAndPassword(data.email, data.password)
+      .then((userCredential) => {
+        // send verification mail.
+        userCredential.user.sendEmailVerification();
+        auth().signOut();
+        alert("Email sent");
+    })
+    .catch();
       console.log('User account created & signed in!');
       // Add navigation logic or any other actions you need after successful registration
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         console.log('That email address is already in use!');
+        alert('This email is already in use')
+        
       } else if (error.code === 'auth/invalid-email') {
         console.log('That email address is invalid!');
       } else {
@@ -35,8 +47,18 @@ const SignUp = ( {navigation} ) => {
     }
   };
 
-  const onLoginGoogle = () => {
-    console.warn("Login with Google")
+  const onLoginGoogle = async () => {
+    
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+  
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
+
   };
 
   
@@ -113,7 +135,7 @@ const SignUp = ( {navigation} ) => {
 
 <TouchableOpacity 
       style={{alignItems: 'center'}}
-      onPress={onLoginGoogle}
+      onPress={() => onLoginGoogle().then(() => console.log('Signed in with Google!'))}
       >
         <Image
           source={require("../assets/icons/Google_Icons-09-512.webp")}

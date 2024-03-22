@@ -12,7 +12,20 @@
           "package_name": "com.budgebuddy"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "298648568548-cnfjegr8s3sshnrlj03k8o4utlq35dbs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.budgebuddy",
+            "certificate_hash": "11478537d0a783fad9fb7db05e12cfd8758a13cb"
+          }
+        },
+        {
+          "client_id": "298648568548-sjhbn8s5oi5trotig72s05aalmuchju5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB8ryiu3QtVze5B6PTPNiKclbfvTetfbEA"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298648568548-sjhbn8s5oi5trotig72s05aalmuchju5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "298648568548-g93drv3354dhln9s1qtpr7cgl7h2qorg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.BudgeBuddy"
+              }
+            }
+          ]
         }
       }
     }
