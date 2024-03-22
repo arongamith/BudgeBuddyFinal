@@ -1,9 +1,29 @@
-import { View, Text, StyleSheet, SafeAreaView, TextInput, Image, TouchableOpacity } from 'react-native'
-import React, {useState} from 'react'
+import { View, Text, StyleSheet, SafeAreaView, TextInput, Image, TouchableOpacity, LogBox,TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import { DatePick } from './Index';
 
 
+
+ // Igoniring the warning becuase it does not affect the program
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state',
+]); 
+
+const DissmissKeyboard = ({ children })=> {
+  return(
+  <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss()}>
+    { children }
+  </TouchableWithoutFeedback>
+)}
+
+
+
 const AddGoal = ({ navigation, route }) => {
+
+  // trigger handleDateChange before opening the form unless time also will be recorded
+  useEffect(() => {
+    handleDateChange(date);
+  }, []); 
   
 
 
@@ -21,6 +41,7 @@ const AddGoal = ({ navigation, route }) => {
     }
     const newGoal = { title, date: dateString, amount };
     handleAddGoal(newGoal);
+    
     navigation.goBack();
   }; 
 
@@ -32,10 +53,12 @@ const AddGoal = ({ navigation, route }) => {
     setDateString(formattedDate);
   };
 
-
   return (
+   <DissmissKeyboard>
+   
     <SafeAreaView style={styles.container}>
 
+    
         <Image
           source={require('../assets/icons/goal.png')}
           
@@ -47,11 +70,12 @@ const AddGoal = ({ navigation, route }) => {
             tintColor: '#2c3763'
           }}
         />
-     
+    
      <TextInput
         placeholder='Title'
         style={styles.input}
         onChangeText={(text) => setTitle(text)}
+        placeholderTextColor="#989595"
       />
 
       <TextInput
@@ -59,6 +83,7 @@ const AddGoal = ({ navigation, route }) => {
         style={styles.input}
         keyboardType='numeric'
         onChangeText={(value) => setAmount(value)}
+        placeholderTextColor="#989595"
       />
 
 
@@ -83,9 +108,13 @@ const AddGoal = ({ navigation, route }) => {
         <Text style={{color: "#FFFFFF", fontWeight: '700'}}>Set Goal</Text>
     </TouchableOpacity>
 
-
+   
 
     </SafeAreaView>
+    
+    </DissmissKeyboard>
+   
+   
   )
 }
 

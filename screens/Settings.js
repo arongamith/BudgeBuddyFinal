@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import auth from '@react-native-firebase/auth';
 
 const Settings = ( { navigation } ) => {
 
-  const onPressLogOut = ()=> {
-
+  const onPressLogOut = () => {
     Alert.alert(
       "Confirm",
-      "Are you sure you want to Log Out ?",
+      "Are you sure you want to Log Out?",
       [
         {
           text: "Cancel",
@@ -15,11 +15,22 @@ const Settings = ( { navigation } ) => {
         },
         {
           text: "Log Out",
-          onPress: () => navigation.navigate('LogOut')
+          onPress: () => {
+            auth()
+              .signOut()
+              .then(() => {
+                console.log('User signed out!');
+                // Add any navigation logic or other actions you need after successful sign out
+              })
+              .catch(error => {
+                console.error('Error signing out:', error);
+                // Handle sign out error if needed
+              });
+          }
         }
       ]
     );
-  }
+  };
 
 
   return (

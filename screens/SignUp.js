@@ -2,6 +2,8 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image} from 're
 import React, {useState} from 'react'
 import { CustomButton, CustomInput } from './Index'
 import {useForm} from 'react-hook-form'
+import auth from '@react-native-firebase/auth';
+
 
 const SignUp = ( {navigation} ) => {
 
@@ -10,11 +12,27 @@ const SignUp = ( {navigation} ) => {
   const {control, handleSubmit, watch} = useForm();
   const pwd = watch('password');
 
-  const onRegister = (data)=> {
-    console.log(data)
-    // Validate Registration
+  const onRegister = async (data)=> {
+    
 
-    navigation.navigate("ConfirmEmail")
+    if (data.password !== data.confirmPassword) {
+      console.log("Passwords do not match");
+      return;
+    }
+  
+    try {
+      await auth().createUserWithEmailAndPassword(data.email, data.password);
+      console.log('User account created & signed in!');
+      // Add navigation logic or any other actions you need after successful registration
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      } else if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      } else {
+        console.error(error);
+      }
+    }
   };
 
   const onLoginGoogle = () => {
@@ -47,22 +65,7 @@ const SignUp = ( {navigation} ) => {
         </View>
       </View>
 
-      <CustomInput 
-      name="username"
-      placeholder={'Username'} 
-      control ={control}
-      rules={{
-        required: 'Username is Required',
-        minLength: {
-          value: 4,
-          message: "Username should be minimum of 4 characters"
-        },
-        maxLength: {
-          value: 10,
-          message: "Username should not be more than 10 characters"
-        }
-      }}
-      />
+      
       <CustomInput
       name={"email"}
       placeholder={"Email"}
