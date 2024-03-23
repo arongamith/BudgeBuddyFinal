@@ -15,7 +15,10 @@ jobs:
         name: Android Build
         runs-on: ubuntu-latest
         steps:
-          
+          - name: Checkout to cicd branch
+            uses: actions/checkout@v3
+            with:
+              ref: cicd-implementation-main
           - name: Test npm
             run: npm -v
           
