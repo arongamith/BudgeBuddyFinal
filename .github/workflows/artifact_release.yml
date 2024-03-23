@@ -16,6 +16,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           
-          - name: List the directory
-            run: ls
+          - name: Test npm
+            run: npm -v
           
