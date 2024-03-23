@@ -45,7 +45,7 @@ jobs:
               ./gradlew build
           - name: Build Android JS Bundle
             run: |
-              yarn run package-android
+              npm run package-android
           
 
           
