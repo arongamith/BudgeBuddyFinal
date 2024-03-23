@@ -7,7 +7,7 @@ const Investments = () => {
 
   const [options] = useState(['Gold','Real Estate','Fixed Deposit']);
   const [investmentType, setInvestmentType] = useState(options[0]);
-  const { incomeTransactions, expenseTransactions } = TransactionUtils();
+ 
   
 
   return (
