@@ -44,7 +44,9 @@ jobs:
               cd android
               ./gradlew assembleRelease
           - name: Check apk file
-            run: ls -lh
+            run: |
+              cd android/app/build/outputs/apk/release/
+              ls -lh
 
     release-artifact:
       name: Release apk 
