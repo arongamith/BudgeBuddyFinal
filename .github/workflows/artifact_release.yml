@@ -24,7 +24,7 @@ jobs:
           - name: Install npm dependency
             run: npm install
           - name: check directory.
-            run: ls -lwr
+            run: ls -lw
           - name: Setup Android SDK
             uses: android-actions/setup-android@v2
           
