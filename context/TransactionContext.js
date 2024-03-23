@@ -1,6 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import database from '@react-native-firebase/database';
+import { firebase } from '@react-native-firebase/database';
+
+
 
 
 const TransactionContext = createContext();
@@ -8,6 +13,11 @@ const TransactionContext = createContext();
 export const TransactionProvider = ({ children }) => {
     const [transactions, setTransactions] = useState([]);
     const [balance, setBalance] = useState(0);
+
+    // const reference = firebase
+    // .app()
+    // .database('https://budgebuddy-38453-default-rtdb.asia-southeast1.firebasedatabase.app/')
+    // .ref('/transactions');
 
     useEffect(() => {
         loadTransactions();
@@ -68,7 +78,27 @@ export const TransactionProvider = ({ children }) => {
         const updatedBalance = type === 'Income' ? balance + parseFloat(amount) : balance - parseFloat(amount);
         setBalance(updatedBalance);
         saveBalance(updatedBalance);
+
+        // database()
+        //     .ref('/transactions')
+        //     .push(newTransaction)
+        //     .then(() => console.log('Transaction data saved in Firebase.'))
+        //     .catch((error) => console.error('Error saving transaction data in Firebase:', error));
+
+        // sendTransactionDataToAPI(newTransaction, type);        
+    
     };
+
+    // const sendTransactionDataToAPI = (transactionData, type) => {
+    //     const endpoint = type === 'Income' ? 'income' : 'expense'; // Choose the appropriate endpoint based on transaction type
+    //     axios.post(`http://your-flask-api-endpoint.com/api/transactions/${endpoint}`, transactionData)
+    //         .then(response => {
+    //             console.log(`${type} data sent to API:`, response.data);
+    //         })
+    //         .catch(error => {
+    //             console.error(`Error sending ${type} data to API:`, error);
+    //         });
+    // };
 
     const deleteTransaction = (index) => {
         const transactionToDelete = transactions[index];

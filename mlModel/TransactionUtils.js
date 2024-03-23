@@ -13,6 +13,4 @@ const TransactionUtils = () => {
   return { incomeTransactions, expenseTransactions };
 };
 
-
-
 export default TransactionUtils;
