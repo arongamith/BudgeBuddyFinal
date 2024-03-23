@@ -52,7 +52,13 @@ export const TransactionProvider = ({ children }) => {
     };
 
     const addTransaction = (type, category, amount) => {
-        const newTransaction = { type, category, amount };
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is zero-indexed
+        const date = String(currentDate.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${date}`;
+
+        const newTransaction = { type, date: formattedDate, category, amount };
         const updatedTransactions = [...transactions, newTransaction];
         setTransactions(updatedTransactions);
         saveTransactions(updatedTransactions);
