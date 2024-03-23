@@ -43,6 +43,9 @@ jobs:
             run: |
               cd android
               ./gradlew assembleRelease
+          - name: Check apk file
+            run: ls -lh
+
     release-artifact:
       name: Release apk 
       runs-on: ubuntu-latest
