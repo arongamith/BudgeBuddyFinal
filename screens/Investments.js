@@ -1,11 +1,13 @@
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native'
 import React,{ useState } from 'react'
 import { SwitchTab } from './Index';
+import TransactionUtils from '../mlModel/TransactionUtils'
 
 const Investments = () => {
 
   const [options] = useState(['Gold','Real Estate','Fixed Deposit']);
   const [investmentType, setInvestmentType] = useState(options[0]);
+ 
   
 
   return (
@@ -23,6 +25,8 @@ const Investments = () => {
           setSwitchState={setInvestmentType}
         />
       </View>
+
+      
 
 
     </SafeAreaView>
