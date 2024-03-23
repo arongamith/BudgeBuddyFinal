@@ -57,7 +57,7 @@ const Investments = () => {
       {investmentType === 'Gold' && (
         <View style={styles.videoContainer}>
           <TouchableOpacity onPress={openYouTubeLink} style={styles.button}>
-            <Text style={styles.buttonText}>Watch Gold Video</Text>
+            <Text style={styles.buttonText}>Watch 'Gold' Video</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -65,7 +65,7 @@ const Investments = () => {
       {investmentType === 'Real Estate' && (
         <View style={styles.videoContainer}>
           <TouchableOpacity onPress={openYouTubeLink2} style={styles.button}>
-            <Text style={styles.buttonText}>Watch Real Estate Video</Text>
+            <Text style={styles.buttonText}>Watch 'Real Estate' Video</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -73,7 +73,7 @@ const Investments = () => {
         {investmentType === 'Fixed Deposit' && (
         <View style={styles.videoContainer}>
           <TouchableOpacity onPress={openYouTubeLink3} style={styles.button}>
-            <Text style={styles.buttonText}>Watch Fixed Deposit Video</Text>
+            <Text style={styles.buttonText}>Watch 'Fixed Deposit' Video</Text>
           </TouchableOpacity>
         </View>
       )}
