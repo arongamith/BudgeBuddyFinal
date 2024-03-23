@@ -8,16 +8,22 @@ import { firebase } from '@react-native-firebase/database';
 
 
 
+
+
+
+
 const TransactionContext = createContext();
 
 export const TransactionProvider = ({ children }) => {
     const [transactions, setTransactions] = useState([]);
     const [balance, setBalance] = useState(0);
 
-    // const reference = firebase
-    // .app()
-    // .database('https://budgebuddy-38453-default-rtdb.asia-southeast1.firebasedatabase.app/')
-    // .ref('/transactions');
+    
+    const reference = firebase
+    .app()
+    .database('https://budgebuddy-38453-default-rtdb.asia-southeast1.firebasedatabase.app/')
+    .ref('/transactions');
+    
 
     useEffect(() => {
         loadTransactions();
@@ -79,13 +85,16 @@ export const TransactionProvider = ({ children }) => {
         setBalance(updatedBalance);
         saveBalance(updatedBalance);
 
-        // database()
-        //     .ref('/transactions')
-        //     .push(newTransaction)
-        //     .then(() => console.log('Transaction data saved in Firebase.'))
-        //     .catch((error) => console.error('Error saving transaction data in Firebase:', error));
+        
 
-        // sendTransactionDataToAPI(newTransaction, type);        
+        reference.set(updatedTransactions)
+        .then(() => {
+          console.log('Data has been set successfully');
+        })
+        .catch((error) => {
+          console.error('Error setting data:', error);
+        });
+        
     
     };
 
@@ -124,6 +133,14 @@ export const TransactionProvider = ({ children }) => {
 
                         setTransactions(updatedTransactions);
                         saveTransactions(updatedTransactions);
+
+                        reference.set(updatedTransactions)
+                            .then(() => {
+                            console.log('Data has been set successfully');
+                            })
+                            .catch((error) => {
+                            console.error('Error setting data:', error);
+                            });
                     },
                     style: 'destructive',
                 },
