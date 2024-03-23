@@ -6,12 +6,6 @@ import database from '@react-native-firebase/database';
 import { firebase } from '@react-native-firebase/database';
 
 
-
-
-
-
-
-
 const TransactionContext = createContext();
 
 export const TransactionProvider = ({ children }) => {
