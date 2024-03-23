@@ -2,11 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, FlatList, TextInput, ScrollView, Dimensions,} from 'react-native';
 import { CustomButton, GoalComponent, AddGoal } from './Index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import database from '@react-native-firebase/database';
+import { firebase } from '@react-native-firebase/database';
 
 
 const Goal = ( {navigation} ) => {
 
   const [goals, setGoals] = useState([]);
+
+  const reference = firebase
+    .app()
+    .database('https://budgebuddy-38453-default-rtdb.asia-southeast1.firebasedatabase.app/')
+    .ref('/goals');
 
 
   useEffect(() => {
@@ -43,6 +50,14 @@ const Goal = ( {navigation} ) => {
     const updatedGoals = [...goals, newGoal];
     setGoals(updatedGoals);
     saveGoals(updatedGoals); // Save updated goals to AsyncStorage
+
+    reference.set(updatedGoals)
+        .then(() => {
+          console.log('Data has been set successfully');
+        })
+        .catch((error) => {
+          console.error('Error setting data:', error);
+        });
   };
 
   const handleDeleteGoal = (index) => {
@@ -50,6 +65,14 @@ const Goal = ( {navigation} ) => {
     updatedGoals.splice(index, 1); // Remove the goal at the specified index
     setGoals(updatedGoals); // Update the state
     saveGoals(updatedGoals); 
+
+    reference.set(updatedGoals)
+        .then(() => {
+          console.log('Data has been set successfully');
+        })
+        .catch((error) => {
+          console.error('Error setting data:', error);
+        });
   };
 
   const handlePressGetBudgetPlan = (title, amount, date) => {

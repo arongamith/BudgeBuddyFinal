@@ -20,9 +20,9 @@ export const TransactionProvider = ({ children }) => {
 
     
     const reference = firebase
-    .app()
-    .database('https://budgebuddy-38453-default-rtdb.asia-southeast1.firebasedatabase.app/')
-    .ref('/transactions');
+        .app()
+        .database('https://budgebuddy-38453-default-rtdb.asia-southeast1.firebasedatabase.app/')
+        .ref('/transactions');
     
 
     useEffect(() => {
