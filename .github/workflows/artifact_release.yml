@@ -26,7 +26,7 @@ jobs:
           - name: check directory.
             run: ls -lh
           - name: Setup Android SDK
-            uses: android-actions/setup-android@v3.2.0
+            uses: android-actions/setup-android@v3
           - name: check directory sdk.
             run: ls -lh
           - uses: actions/cache@v3
