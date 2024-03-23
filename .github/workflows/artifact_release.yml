@@ -1,0 +1,21 @@
+# Name of the action.
+name: Artifact Releaser
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push events but only for certain file changes on the main branch
+  # push:
+  #   branches: [ cicd-implementation-main ]
+
+  # Allows to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+    android-build:
+        name: Android Build
+        runs-on: ubuntu-latest
+        steps:
+          
+          - name: List the directory
+            run: ls
+          
