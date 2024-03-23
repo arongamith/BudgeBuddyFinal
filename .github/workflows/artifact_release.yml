@@ -26,5 +26,26 @@ jobs:
           - name: check directory.
             run: ls -lh
           - name: Setup Android SDK
-            uses: android-actions/setup-android@v2
+            uses: android-actions/setup-android@v3.2.0
+          - name: check directory sdk.
+            run: ls -lh
+          - uses: actions/cache@v3
+            with:
+              path: |
+                ~/.gradle/caches
+                ~/.gradle/wrapper
+              key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+              restore-keys: |
+                ${{ runner.os }}-gradle-
+          - name: Setup Gradle
+            uses: gradle/gradle-build-action@v2
+          - name: Execute Gradle build
+            run: |
+              cd android
+              ./gradlew build
+          - name: Build Android JS Bundle
+            run: |
+              yarn run package-android
+          
+
           
