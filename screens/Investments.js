@@ -103,10 +103,16 @@ const Investments = () => {
         {investmentType === 'Fixed Deposit' && (
         <View style={styles.videoContainer}>
           <TouchableOpacity onPress={openYouTubeLink3} style={styles.button}>
-            <Text style={styles.buttonText}>Watch 'Fixed Deposit' Video</Text>
+            <Text style={styles.buttonText}>'Fixed Deposit' Video</Text>
           </TouchableOpacity>
         </View>
       )}
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.roundButton} onPress={() => console.log('Button pressed')}>
+          <Text style={styles.buttonText}>Click here</Text>
+        </TouchableOpacity>
+      </View>
 
     </SafeAreaView>
  );
@@ -158,17 +164,32 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 200,
     },
+ buttonContainer: {
+    position: 'absolute',
+    bottom: 140,
+    right: 20,
+ },
+ roundButton: {
+    width: 80,
+    height:40,
+    borderRadius: 10,
+    backgroundColor: '#2196F3',
+    justifyContent: 'center',
+    alignItems: 'center',
+ },
  buttonText: {
     color: '#FFFFFF',
     textAlign: 'center',
+    fontSize: 14,
+    fontWeight: 'bold',
     },
  imageContainer: {
     width: 100,
     height: 100,
    },
 image:{
-  width:400,
-  height: 450
+    width:400,
+    height: 450
 }
 });
 
