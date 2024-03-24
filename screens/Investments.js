@@ -6,9 +6,9 @@ const Investments = () => {
  const [options] = useState(['Gold', 'Real Estate', 'Fixed Deposit']);
  const [investmentType, setInvestmentType] = useState(options[0]);
  const [descriptions] = useState({
-    'Gold': "'Gold' investment involves purchasing gold bars, coins, or other forms of physical gold, or investing in gold-related financial products like ETFs or mining stocks, with the aim of potentially preserving or increasing wealth over time due to gold's historical value and perceived stability as a store of wealth.",
+    'Gold': "'Gold' investment involves purchasing gold bars, coins, or other forms of physical gold, or investing in gold-related financial products like ETFs or mining stocks, with the aim of potentially preserving or increasing wealth over time due to gold's historical value and perceived stability as a store of wealth. This act as a hedge against economic instability providing diversification to investment portfolios.",
     'Real Estate': "'Real estate' investment involves purchasing, owning, managing, renting, or selling property with the aim of generating income, capital appreciation, or both. It's a form of investment that typically involves acquiring residential, commercial, or industrial properties for various purposes such as rental income, property flipping, or long-term appreciation.",
-    'Fixed Deposit': "A 'fixed deposit' investment involves depositing a sum of money with a financial institution for a predetermined period at a fixed interest rate, offering a low-risk option with guaranteed returns upon maturity.",
+    'Fixed Deposit': "A fixed deposit is a financial instrument where you invest a sum of money for a fixed tenure at a predetermined interest rate. It offers a secure investment option. This typically have higher interest rates compared to regular savings accounts, making them attractive for risk-averse investors. They provide capital protection and a predictable income stream.",
  });
 
  const openYouTubeLink = () => {
@@ -103,14 +103,14 @@ const Investments = () => {
         {investmentType === 'Fixed Deposit' && (
         <View style={styles.videoContainer}>
           <TouchableOpacity onPress={openYouTubeLink3} style={styles.button}>
-            <Text style={styles.buttonText}>'Fixed Deposit' Video</Text>
+            <Text style={styles.buttonText}>Watch 'Fixed Deposit' Video</Text>
           </TouchableOpacity>
         </View>
       )}
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.roundButton} onPress={() => console.log('Button pressed')}>
-          <Text style={styles.buttonText}>Click here</Text>
+          <Text style={styles.buttonText}>Click here to get recommendations</Text>
         </TouchableOpacity>
       </View>
 
@@ -159,21 +159,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     },
  button: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#456ca3',
     padding: 10,
     borderRadius: 10,
+    bottom:40,
     marginTop: 200,
     },
  buttonContainer: {
     position: 'absolute',
-    bottom: 140,
-    right: 20,
+    bottom: 90,
+    right: 100,
  },
  roundButton: {
-    width: 80,
-    height:40,
+    width: 200,
+    height:50,
     borderRadius: 10,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#456ca3',
     justifyContent: 'center',
     alignItems: 'center',
  },
