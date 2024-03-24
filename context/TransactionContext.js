@@ -92,17 +92,6 @@ export const TransactionProvider = ({ children }) => {
     
     };
 
-    // const sendTransactionDataToAPI = (transactionData, type) => {
-    //     const endpoint = type === 'Income' ? 'income' : 'expense'; // Choose the appropriate endpoint based on transaction type
-    //     axios.post(`http://your-flask-api-endpoint.com/api/transactions/${endpoint}`, transactionData)
-    //         .then(response => {
-    //             console.log(`${type} data sent to API:`, response.data);
-    //         })
-    //         .catch(error => {
-    //             console.error(`Error sending ${type} data to API:`, error);
-    //         });
-    // };
-
     const deleteTransaction = (index) => {
         const transactionToDelete = transactions[index];
 

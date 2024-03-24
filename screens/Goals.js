@@ -40,8 +40,6 @@ const Goal = ( {navigation} ) => {
     }
   };
   
-  
-
   const handleAddGoal = () => {
     navigation.navigate("CreateGoal", { handleAddGoal: addGoalToList });
   };
@@ -51,13 +49,7 @@ const Goal = ( {navigation} ) => {
     setGoals(updatedGoals);
     saveGoals(updatedGoals); // Save updated goals to AsyncStorage
 
-    reference.set(updatedGoals)
-        .then(() => {
-          console.log('Data has been set successfully');
-        })
-        .catch((error) => {
-          console.error('Error setting data:', error);
-        });
+   
   };
 
   const handleDeleteGoal = (index) => {
@@ -76,7 +68,20 @@ const Goal = ( {navigation} ) => {
   };
 
   const handlePressGetBudgetPlan = (title, amount, date) => {
+
+    const selectedGoal = { title, amount, date };
+
+    reference.set(selectedGoal)
+        .then(() => {
+          console.log('Data has been set successfully');
+        })
+        .catch((error) => {
+          console.error('Error setting data:', error);
+        });
+
+
     navigation.navigate("BudgetPlan", { title, amount, date });
+    
   };
 
   

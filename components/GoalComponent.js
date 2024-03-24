@@ -4,10 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 
 
-
-
-
-const GoalComponent = ({ title, date, amount, onDelete, navigation }) => {
+const GoalComponent = ({ title, date, amount, onDelete, navigation, onPress }) => {
 
  
   const handleDelete = () => {
@@ -28,7 +25,7 @@ const GoalComponent = ({ title, date, amount, onDelete, navigation }) => {
   };
 
   return (
-    <TouchableOpacity onLongPress={handleDelete}>
+    <TouchableOpacity onLongPress={handleDelete} onPress={onPress} >
       <LinearGradient
         colors={['#ffffff', '#ffffff', '#ffffff']}
         style={styles.goal}
