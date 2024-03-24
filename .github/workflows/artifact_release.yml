@@ -89,6 +89,6 @@ jobs:
               ls -lh android/app/build/outputs/apk/release/
 
               # Release the Pack
-              gh release create $new_github_tag_name --title BudgeBuddy - $new_github_tag_name --notes "Release notes for version $new_github_tag_name"
-              gh release upload $new_github_tag_name  android/app/build/outputs/apk/release/app-release.apk
-              echo "Artifacts uploaded to GitHub release."
+             # gh release create $new_github_tag_name --title BudgeBuddy - $new_github_tag_name --notes "Release notes for version $new_github_tag_name"
+             # gh release upload $new_github_tag_name  android/app/build/outputs/apk/release/app-release.apk
+             # echo "Artifacts uploaded to GitHub release."
