@@ -14,6 +14,11 @@ jobs:
     android-build:
         name: Android Build
         runs-on: ubuntu-latest
+        permissions:
+          contents: write
+        env:
+          GIT_REPO: arongamith/BudgeBuddyFinal
+          GH_TOKEN: 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
         steps:
           - name: Checkout to cicd branch
             uses: actions/checkout@v3
@@ -47,59 +52,43 @@ jobs:
             run: |
               ls -lh android/app/build/outputs/apk/release/
 
-    release-artifact:
-      name: Release apk 
-      runs-on: ubuntu-latest
-      needs: android-build
-      permissions:
-        contents: write
-      env:
-        GIT_REPO: arongamith/BudgeBuddyFinal
-        GH_TOKEN: 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
+          - name: Install the github cli
+            run: |
+              curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+              echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+              sudo apt update
+              sudo apt install gh
+              gh version
+              
+          - name: Release GitHub Artifacts
+            id: release_github_artifacts
+            run: |
+              
+              # Get current version
+              current_tag_name=$(gh release view --repo ${{ env.GIT_REPO }} --json tagName --jq '.tagName' || true)
+              
+              # Version control
+              echo "current latest tag name: $current_tag_name"
+              output=$(echo $current_tag_name | grep -oP '\d+\.\d+')
+              echo "OUTPUT: $output"
+              tag_version=$(echo $current_tag_name | grep -oP '\d+\.\d+')
+              IFS="." read -ra ver_compo <<< "$tag_version"
 
-      steps:
-        - name: Checkout to cicd branch
-          uses: actions/checkout@v3
-          with:
-            ref: cicd-implementation-main
+              # Extract major and minor versions
+              major_v="${ver_compo[0]}" 
+              minor_v="${ver_compo[1]}"
+              
+              # Increase the minor version by 1
+              minor_v=$(($minor_v + 1))
+              
+              echo $minor_v
+              # New GitHub Release tag
+              new_github_tag_name="$major_v.$minor_v"
+              echo "Release Tag: $new_github_tag_name"
 
-        - name: Install the github cli
-          run: |
-            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
-            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-            sudo apt update
-            sudo apt install gh
-            gh version
-            
-        - name: Release GitHub Artifacts
-          id: release_github_artifacts
-          run: |
-            
-            # Get current version
-            current_tag_name=$(gh release view --repo ${{ env.GIT_REPO }} --json tagName --jq '.tagName' || true)
-            
-            # Version control
-            echo "current latest tag name: $current_tag_name"
-            output=$(echo $current_tag_name | grep -oP '\d+\.\d+')
-            echo "OUTPUT: $output"
-            tag_version=$(echo $current_tag_name | grep -oP '\d+\.\d+')
-            IFS="." read -ra ver_compo <<< "$tag_version"
+              ls -lh android/app/build/outputs/apk/release/
 
-            # Extract major and minor versions
-            major_v="${ver_compo[0]}" 
-            minor_v="${ver_compo[1]}"
-          
-            # Increase the minor version by 1
-            minor_v=$(($minor_v + 1))
-          
-            echo $minor_v
-            # New GitHub Release tag
-            new_github_tag_name="$major_v.$minor_v"
-            echo "Release Tag: $new_github_tag_name"
-
-            ls -lh android/app/build/outputs/apk/release/
-            
-            # Release the Pack
-            gh release create $new_github_tag_name --title BudgeBuddy - $new_github_tag_name --notes "Release notes for version $new_github_tag_name"
-            gh release upload $new_github_tag_name  ${{ env.TARGET_PATH }}/*.${{ env.TARGET_FILE_TYPE }}
-            echo "Artifacts uploaded to GitHub release."
+              # Release the Pack
+              gh release create $new_github_tag_name --title BudgeBuddy - $new_github_tag_name --notes "Release notes for version $new_github_tag_name"
+              gh release upload $new_github_tag_name  android/app/build/outputs/apk/release/*.apk
+              echo "Artifacts uploaded to GitHub release."
