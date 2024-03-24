@@ -45,8 +45,7 @@ jobs:
               ./gradlew assembleRelease
           - name: Check apk file
             run: |
-              cd android/app/build/outputs/apk/release/
-              ls -lh
+              ls -lh android/app/build/outputs/apk/release/
 
     release-artifact:
       name: Release apk 
@@ -55,7 +54,9 @@ jobs:
       permissions:
         contents: write
       env:
+        GIT_REPO: arongamith/BudgeBuddyFinal
         GH_TOKEN: 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
+
       steps:
         - name: Checkout to cicd branch
           uses: actions/checkout@v3
@@ -73,5 +74,32 @@ jobs:
         - name: Release GitHub Artifacts
           id: release_github_artifacts
           run: |
+            
+            # Get current version
+            current_tag_name=$(gh release view --repo ${{ env.GIT_REPO }} --json tagName --jq '.tagName' || true)
+            
+            # Version control
+            echo "current latest tag name: $current_tag_name"
+            output=$(echo $current_tag_name | grep -oP '\d+\.\d+')
+            echo "OUTPUT: $output"
+            tag_version=$(echo $current_tag_name | grep -oP '\d+\.\d+')
+            IFS="." read -ra ver_compo <<< "$tag_version"
+
+            # Extract major and minor versions
+            major_v="${ver_compo[0]}" 
+            minor_v="${ver_compo[1]}"
+          
+            # Increase the minor version by 1
+            minor_v=$(($minor_v + 1))
+          
+            echo $minor_v
+            # New GitHub Release tag
+            new_github_tag_name="$major_v.$minor_v"
+            echo "Release Tag: $new_github_tag_name"
+
+            ls -lh android/app/build/outputs/apk/release/
+            
             # Release the Pack
-            gh release create v1.0.1 --title BudgeBuddy --notes "Release notes for version $new_github_tag_name" android/app/build/outputs/apk/release/*.apk
+            gh release create $new_github_tag_name --title BudgeBuddy - $new_github_tag_name --notes "Release notes for version $new_github_tag_name"
+            gh release upload $new_github_tag_name  ${{ env.TARGET_PATH }}/*.${{ env.TARGET_FILE_TYPE }}
+            echo "Artifacts uploaded to GitHub release."
