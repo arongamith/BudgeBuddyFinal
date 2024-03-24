@@ -26,22 +26,23 @@ const AddGoal = ({ navigation, route }) => {
   }, []); 
   
 
-
+  const [goalID, setGoalID] = useState("");
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(new Date());
   const [amount, setAmount] = useState(0);
   const [open, setOpen] = useState(false)
   const { handleAddGoal } = route.params;
   const [dateString, setDateString] = useState(date.toString());
+
+ 
   
 
   const handleSetGoal = () => {
-    if (!title || !amount || !date) {
+    if (!goalID || !title || !amount || !date) {
       return;
     }
-    const newGoal = { title, date: dateString, amount };
+    const newGoal = { goalID, title, date: dateString, amount };
     handleAddGoal(newGoal);
-    
     navigation.goBack();
   }; 
 
@@ -70,6 +71,16 @@ const AddGoal = ({ navigation, route }) => {
             tintColor: '#2c3763'
           }}
         />
+
+
+
+      <TextInput
+        placeholder='Set a Goal ID'
+        style={styles.input}
+        keyboardType='numeric'
+        onChangeText={(value) => setGoalID(value)}
+        placeholderTextColor="#989595"
+      />
     
      <TextInput
         placeholder='Title'
