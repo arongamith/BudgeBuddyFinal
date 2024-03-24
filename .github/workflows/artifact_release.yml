@@ -54,6 +54,8 @@ jobs:
       needs: android-build
       permissions:
         contents: write
+      env:
+        GH_TOKEN: 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
       steps:
         - name: Checkout to cicd branch
           uses: actions/checkout@v3
